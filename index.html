@@ -3,12 +3,109 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>TOWWAH | توّه</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f4f1ea;
+      color: #111;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 32px 40px;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+    }
+
+    .brand-ar {
+      font-family: "Times New Roman", serif;
+      font-size: clamp(90px, 18vw, 260px);
+      line-height: 0.85;
+      margin: 0;
+      direction: rtl;
+      text-align: left;
+      font-weight: 700;
+    }
+
+    .bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 40px;
+    }
+
+    .tagline {
+      max-width: 520px;
+      font-family: Georgia, serif;
+      font-size: clamp(28px, 4vw, 60px);
+      line-height: 1;
+      margin: 0;
+    }
+
+    .english-name {
+      font-size: 14px;
+      letter-spacing: 0.2em;
+      margin: 0;
+    }
+
+    @media (max-width: 700px) {
+      .hero {
+        padding: 22px;
+      }
+
+      .top {
+        font-size: 12px;
+      }
+
+      .bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .brand-ar {
+        font-size: 28vw;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <h1>تَوّه</h1>
-  <h2>TOWWAH</h2>
-  <p>Stories in progress.</p>
+
+  <main class="hero">
+
+    <div class="top">
+      <span>TOWWAH</span>
+      <span>STORIES IN PROGRESS</span>
+    </div>
+
+    <h1 class="brand-ar">تَوّه</h1>
+
+    <div class="bottom">
+      <p class="tagline">
+        Meet people before we know who they will become.
+      </p>
+
+      <p class="english-name">TOWWAH — 2026</p>
+    </div>
+
+  </main>
+
 </body>
 </html>
