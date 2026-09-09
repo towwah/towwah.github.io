@@ -8,189 +8,1488 @@
 
 <style>
 
-*{
-  box-sizing:border-box;
+/* =========================
+   BASE
+========================= */
+
+* {
+  box-sizing: border-box;
 }
 
-html{
-  scroll-behavior:smooth;
+html {
+  scroll-behavior: smooth;
 }
 
-body{
-  margin:0;
-  background:#e9e2d2;
-  color:#171713;
-  overflow-x:hidden;
-  font-family:Arial,Helvetica,sans-serif;
+body {
+  margin: 0;
+  background: #eee7d8;
+  color: #171714;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
-/* PAPER TEXTURE */
+/* paper texture */
 
-body:before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:999;
-  opacity:.14;
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.12;
+
   background-image:
-  radial-gradient(#333 0.45px, transparent 0.45px);
-  background-size:6px 6px;
-  mix-blend-mode:multiply;
+    radial-gradient(#4c463d 0.6px, transparent 0.6px);
+
+  background-size: 6px 6px;
 }
 
-:root{
-  --paper:#eee7d8;
-  --paper2:#e4ddcc;
-  --ink:#171713;
-  --blue:#314b78;
-  --olive:#68705a;
-  --wine:#4c1820;
-  --line:#9b927e;
+
+/* =========================
+   TOP BAR
+========================= */
+
+.topbar {
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 28px;
+
+  border-bottom: 1px solid #777064;
+
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
-/* HERO */
 
-.hero{
-  min-height:100vh;
-  position:relative;
-  overflow:hidden;
-  background:var(--paper);
-  border-bottom:1px solid #8f8778;
+/* =========================
+   ENGLISH MOVING LOGO
+========================= */
+
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+
+  border-bottom: 1px solid #777064;
 }
 
-.topline{
-  padding:18px 28px;
-  border-bottom:1px solid #8f8778;
-  display:flex;
-  justify-content:space-between;
-  font-size:11px;
-  letter-spacing:.17em;
-  text-transform:uppercase;
+.marquee-track {
+  display: flex;
+  width: max-content;
+
+  animation: moveEnglish 18s linear infinite;
 }
 
-.marquee{
-  width:100%;
-  overflow:hidden;
-  white-space:nowrap;
+.marquee-track span {
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(105px, 16vw, 225px);
+  line-height: 0.78;
+
+  letter-spacing: -0.07em;
+
+  padding: 38px 42px 48px;
 }
 
-.track{
-  display:inline-flex;
-  width:max-content;
-  animation:scrollLeft 23s linear infinite;
+@keyframes moveEnglish {
+
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+
 }
 
-.track.ar{
-  animation:scrollRight 28s linear infinite;
+
+/* =========================
+   VISUAL COLLAGE
+========================= */
+
+.collage {
+  position: relative;
+
+  width: min(1300px, 100%);
+  height: 590px;
+
+  margin: auto;
 }
 
-.word{
-  font-family:Georgia,serif;
-  font-size:clamp(95px,15vw,230px);
-  line-height:.78;
-  letter-spacing:-.07em;
-  padding:38px 30px;
+
+/* POSTCARD */
+
+.postcard {
+  position: absolute;
+
+  width: 370px;
+  height: 235px;
+
+  left: 7%;
+  top: 90px;
+
+  padding: 25px;
+
+  background: #f6efe1;
+
+  border: 1px solid #8b8272;
+
+  transform: rotate(-4deg);
+
+  box-shadow:
+    5px 8px 18px rgba(0,0,0,0.09);
 }
 
-.word.arabic{
-  font-family:"Times New Roman",serif;
-  direction:rtl;
-  letter-spacing:0;
+.postcard-label {
+  font-size: 9px;
+  letter-spacing: 0.17em;
 }
 
-@keyframes scrollLeft{
-  from{transform:translateX(0)}
-  to{transform:translateX(-50%)}
+.postcard h2 {
+  margin: 28px 0 25px;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 43px;
+  line-height: 0.92;
+
+  font-weight: normal;
 }
 
-@keyframes scrollRight{
-  from{transform:translateX(-50%)}
-  to{transform:translateX(0)}
+.postcard-line {
+  height: 1px;
+
+  background: #aaa08f;
+
+  margin-top: 13px;
 }
 
-/* COLLAGE */
+.postcard-bottom {
+  margin-top: 17px;
 
-.hero-collage{
-  position:relative;
-  height:500px;
-  max-width:1300px;
-  margin:auto;
+  font-size: 8px;
+  letter-spacing: 0.14em;
 }
 
-.paper-card{
-  position:absolute;
-  background:#f0e8d7;
-  border:1px solid #aaa08d;
-  box-shadow:0 13px 25px rgba(0,0,0,.14);
+
+/* HANDWRITTEN NOTE */
+
+.hand-note {
+  position: absolute;
+
+  left: 38%;
+  top: 70px;
+
+  padding: 17px 22px;
+
+  background: #dcd0b4;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 19px;
+  font-style: italic;
+
+  transform: rotate(4deg);
+
+  box-shadow:
+    3px 5px 10px rgba(0,0,0,0.06);
 }
 
-.postcard{
-  width:400px;
-  height:240px;
-  left:10%;
-  top:80px;
-  padding:25px;
-  transform:rotate(-4deg);
+
+/* PORTRAIT */
+
+.portrait {
+  position: absolute;
+
+  right: 8%;
+  top: 55px;
+
+  width: 310px;
+
+  padding:
+    11px
+    11px
+    34px;
+
+  background: #f7efe1;
+
+  border: 1px solid #918777;
+
+  transform: rotate(5deg);
+
+  box-shadow:
+    7px 12px 20px rgba(0,0,0,0.12);
 }
 
-.postcard-title{
-  font-family:Georgia,serif;
-  font-size:32px;
-  margin-bottom:25px;
-}
+.portrait-image {
+  height: 300px;
 
-.postcard small{
-  display:block;
-  font-size:10px;
-  letter-spacing:.13em;
-  margin-bottom:12px;
-}
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-.postcard-line{
-  border-bottom:1px solid #8e8575;
-  margin:18px 0;
-}
-
-.photo-card{
-  width:320px;
-  height:350px;
-  right:12%;
-  top:25px;
-  transform:rotate(5deg);
-  padding:12px;
-}
-
-.fake-photo{
-  width:100%;
-  height:275px;
   background:
-  linear-gradient(
-    rgba(25,25,20,.12),
-    rgba(25,25,20,.12)
-  ),
-  #b6ab96;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-family:Georgia,serif;
-  font-size:26px;
+    linear-gradient(
+      145deg,
+      #c4b9a4,
+      #71685a
+    );
+
+  color: #f1eadc;
+
+  font-family: Georgia, serif;
+
+  font-size: 27px;
 }
 
-.photo-caption{
-  font-size:10px;
-  margin-top:12px;
-  letter-spacing:.1em;
+.portrait-caption {
+  padding-top: 12px;
+
+  font-size: 8px;
+  letter-spacing: 0.14em;
 }
 
-/* FINJAN */
 
-.finjan{
-  position:absolute;
-  left:43%;
-  top:225px;
-  transform:rotate(-7deg);
+/* DOCUMENT STAMP */
+
+.stamp {
+  position: absolute;
+
+  right: 34%;
+  top: 180px;
+
+  width: 120px;
+  height: 120px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid #596c55;
+  border-radius: 50%;
+
+  color: #596c55;
+
+  text-align: center;
+
+  font-size: 9px;
+  line-height: 1.6;
+  letter-spacing: 0.12em;
+
+  transform: rotate(-15deg);
 }
 
-.finjan svg{
-  width:160px
+
+/* =========================
+   FINJAN ILLUSTRATION
+========================= */
+
+.finjan {
+  position: absolute;
+
+  left: 43%;
+  top: 330px;
+
+  width: 170px;
+
+  transform: rotate(-10deg);
+}
+
+.finjan svg {
+  width: 100%;
+  height: auto;
+}
+
+
+/* little archive label */
+
+.archive-label {
+  position: absolute;
+
+  left: 12%;
+  bottom: 70px;
+
+  font-size: 9px;
+
+  letter-spacing: 0.16em;
+
+  transform: rotate(-2deg);
+}
+
+.archive-label strong {
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-family: Georgia, serif;
+
+  font-size: 21px;
+
+  letter-spacing: 0;
+  font-weight: normal;
+}
+
+
+/* =========================
+   ARABIC MOVING LOGO
+========================= */
+
+.arabic-marquee {
+  overflow: hidden;
+  white-space: nowrap;
+
+  border-top: 1px solid #777064;
+  border-bottom: 1px solid #777064;
+}
+
+.arabic-track {
+  display: flex;
+
+  width: max-content;
+
+  animation: moveArabic 20s linear infinite;
+}
+
+.arabic-track span {
+  padding: 30px 50px 42px;
+
+  font-family: "Times New Roman", serif;
+
+  font-size: clamp(100px, 15vw, 215px);
+  line-height: 0.8;
+
+  direction: rtl;
+}
+
+@keyframes moveArabic {
+
+  from {
+    transform: translateX(-45%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.intro {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1.5fr;
+
+  gap: 80px;
+
+  padding:
+    100px
+    8%;
+
+  border-bottom: 1px solid #777064;
+}
+
+.section-number {
+  font-size: 10px;
+  letter-spacing: 0.17em;
+}
+
+.intro-text {
+  max-width: 720px;
+}
+
+.intro-text h2 {
+  margin: 0 0 30px;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(42px, 6vw, 85px);
+  line-height: 0.95;
+
+  font-weight: normal;
+
+  letter-spacing: -0.04em;
+}
+
+.intro-text p {
+  max-width: 580px;
+
+  font-family: Georgia, serif;
+
+  font-size: 19px;
+  line-height: 1.6;
+}
+
+
+/* =========================
+   TRY BE NEXT
+========================= */
+
+.be-next {
+  display: grid;
+
+  grid-template-columns:
+    1.2fr
+    1fr;
+
+  min-height: 520px;
+
+  border-bottom: 1px solid #777064;
+}
+
+.be-next-left {
+  padding: 80px 8%;
+
+  background: #243d59;
+
+  color: #eee7d8;
+}
+
+.be-next-left small {
+  font-size: 9px;
+  letter-spacing: 0.17em;
+}
+
+.be-next-left h2 {
+  margin:
+    60px
+    0
+    20px;
+
+  font-family: Georgia, serif;
+
+  font-weight: normal;
+
+  font-size: clamp(60px, 8vw, 120px);
+
+  line-height: 0.82;
+
+  letter-spacing: -0.06em;
+}
+
+.be-next-left p {
+  font-family: Georgia, serif;
+
+  font-size: 18px;
+
+  max-width: 440px;
+
+  line-height: 1.5;
+}
+
+.be-next-right {
+  padding: 80px 8%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.be-next-right .arabic {
+  margin-bottom: 45px;
+
+  font-family: Georgia, serif;
+
+  font-size: 38px;
+
+  direction: rtl;
+  text-align: left;
+}
+
+.email-form {
+  display: flex;
+
+  border-bottom: 1px solid #171714;
+}
+
+.email-form input {
+  flex: 1;
+
+  padding:
+    18px
+    5px;
+
+  border: 0;
+  outline: none;
+
+  background: transparent;
+
+  font-family: Georgia, serif;
+
+  font-size: 18px;
+}
+
+.email-form button {
+  border: 0;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  font-size: 11px;
+
+  letter-spacing: 0.14em;
+}
+
+
+/* =========================
+   VISUAL DIARY
+========================= */
+
+.diary {
+  padding:
+    90px
+    6%;
+
+  border-bottom: 1px solid #777064;
+}
+
+.diary-heading {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: flex-end;
+
+  margin-bottom: 60px;
+}
+
+.diary-heading h2 {
+  margin: 0;
+
+  font-family: Georgia, serif;
+
+  font-weight: normal;
+
+  font-size: clamp(55px, 9vw, 130px);
+
+  line-height: 0.8;
+
+  letter-spacing: -0.06em;
+}
+
+.diary-heading span {
+  font-size: 9px;
+
+  letter-spacing: 0.16em;
+}
+
+.diary-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 25px;
+}
+
+.diary-card {
+  border-top: 1px solid #777064;
+
+  padding-top: 12px;
+}
+
+.diary-photo {
+  height: 420px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #c6bdad;
+
+  font-family: Georgia, serif;
+
+  color: #eee7d8;
+
+  font-size: 20px;
+}
+
+.diary-card:nth-child(2)
+.diary-photo {
+  background: #7e766a;
+}
+
+.diary-card:nth-child(3)
+.diary-photo {
+  background: #a99e8d;
+}
+
+.diary-card h3 {
+  margin:
+    15px
+    0
+    6px;
+
+  font-family: Georgia, serif;
+
+  font-size: 27px;
+
+  font-weight: normal;
+}
+
+.diary-card p {
+  margin: 0;
+
+  font-size: 9px;
+
+  letter-spacing: 0.12em;
+}
+
+
+/* =========================
+   FILMS
+========================= */
+
+.films {
+  padding:
+    90px
+    6%;
+
+  background: #181817;
+
+  color: #eee7d8;
+}
+
+.films-top {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-bottom: 50px;
+}
+
+.films h2 {
+  margin: 0;
+
+  font-family: Georgia, serif;
+
+  font-size: clamp(60px, 10vw, 145px);
+
+  font-weight: normal;
+
+  letter-spacing: -0.07em;
+
+  line-height: 0.8;
+}
+
+.film-box {
+  min-height: 500px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #777064;
+
+  background:
+    linear-gradient(
+      135deg,
+      #373532,
+      #111
+    );
+
+  font-family: Georgia, serif;
+
+  font-size: 24px;
+}
+
+.film-caption {
+  display: flex;
+
+  justify-content: space-between;
+
+  padding-top: 15px;
+
+  font-size: 9px;
+
+  letter-spacing: 0.14em;
+}
+
+
+/* =========================
+   EDITOR NOTE
+========================= */
+
+.editor-note {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    2fr;
+
+  gap: 70px;
+
+  padding:
+    100px
+    8%;
+
+  border-bottom: 1px solid #777064;
+}
+
+.editor-note h2 {
+  margin: 0;
+
+  font-family: Georgia, serif;
+
+  font-size: 60px;
+
+  font-weight: normal;
+
+  line-height: 0.95;
+}
+
+.editor-copy {
+  max-width: 680px;
+
+  font-family: Georgia, serif;
+
+  font-size: 21px;
+
+  line-height: 1.65;
+}
+
+.editor-copy a {
+  display: inline-block;
+
+  margin-top: 30px;
+
+  color: inherit;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 9px;
+
+  letter-spacing: 0.16em;
+
+  text-decoration: none;
+
+  border-bottom: 1px solid;
+}
+
+
+/* =========================
+   TIME CAPSULE
+========================= */
+
+.capsule {
+  padding:
+    100px
+    8%;
+
+  background: #752d32;
+
+  color: #f1e9db;
+}
+
+.capsule small {
+  font-size: 9px;
+
+  letter-spacing: 0.17em;
+}
+
+.capsule h2 {
+  max-width: 900px;
+
+  margin:
+    45px
+    0
+    55px;
+
+  font-family: Georgia, serif;
+
+  font-size: clamp(55px, 8vw, 115px);
+
+  font-weight: normal;
+
+  line-height: 0.9;
+
+  letter-spacing: -0.05em;
+}
+
+.capsule textarea {
+  width: 100%;
+  min-height: 180px;
+
+  padding: 25px;
+
+  resize: vertical;
+
+  border:
+    1px solid
+    rgba(241,233,219,0.7);
+
+  outline: none;
+
+  background: transparent;
+
+  color: #f1e9db;
+
+  font-family: Georgia, serif;
+
+  font-size: 20px;
+}
+
+.capsule textarea::placeholder {
+  color:
+    rgba(241,233,219,0.55);
+}
+
+.capsule-bottom {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-top: 15px;
+
+  font-size: 9px;
+
+  letter-spacing: 0.13em;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: flex-end;
+
+  padding:
+    50px
+    6%;
+
+  background: #eee7d8;
+}
+
+.footer-logo {
+  font-family: Georgia, serif;
+
+  font-size: clamp(65px, 12vw, 160px);
+
+  letter-spacing: -0.07em;
+
+  line-height: 0.75;
+}
+
+.footer-small {
+  text-align: right;
+
+  font-size: 9px;
+
+  line-height: 1.8;
+
+  letter-spacing: 0.13em;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 800px) {
+
+  .topbar {
+    padding:
+      0
+      15px;
+  }
+
+  .collage {
+    height: 720px;
+  }
+
+  .postcard {
+    width: 75%;
+
+    left: 5%;
+    top: 70px;
+  }
+
+  .hand-note {
+    left: 48%;
+    top: 280px;
+  }
+
+  .portrait {
+    width: 64%;
+
+    right: 5%;
+    top: 350px;
+  }
+
+  .portrait-image {
+    height: 260px;
+  }
+
+  .stamp {
+    right: 3%;
+    top: 150px;
+
+    width: 95px;
+    height: 95px;
+  }
+
+  .finjan {
+    left: 4%;
+    top: 480px;
+
+    width: 125px;
+  }
+
+  .archive-label {
+    display: none;
+  }
+
+  .intro,
+  .be-next,
+  .editor-note {
+    grid-template-columns: 1fr;
+
+    gap: 40px;
+  }
+
+  .intro {
+    padding:
+      70px
+      7%;
+  }
+
+  .be-next-left,
+  .be-next-right {
+    padding:
+      65px
+      7%;
+  }
+
+  .diary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .diary-photo {
+    height: 480px;
+  }
+
+  .films {
+    padding:
+      70px
+      5%;
+  }
+
+  .film-box {
+    min-height: 320px;
+  }
+
+  .editor-note {
+    padding:
+      70px
+      7%;
+  }
+
+  .capsule {
+    padding:
+      70px
+      7%;
+  }
+
+  footer {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 35px;
+  }
+
+  .footer-small {
+    text-align: left;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- TOP -->
+
+<header class="topbar">
+
+  <span>TOWWAH / تَوّه</span>
+
+  <span>
+    INDEPENDENT JOURNAL · 2026
+  </span>
+
+</header>
+
+
+<!-- MOVING ENGLISH LOGO -->
+
+<section class="marquee">
+
+  <div class="marquee-track">
+
+    <span>TOWWAH</span>
+    <span>TOWWAH</span>
+    <span>TOWWAH</span>
+    <span>TOWWAH</span>
+
+    <span>TOWWAH</span>
+    <span>TOWWAH</span>
+    <span>TOWWAH</span>
+    <span>TOWWAH</span>
+
+  </div>
+
+</section>
+
+
+<!-- COLLAGE -->
+
+<section class="collage">
+
+
+  <div class="postcard">
+
+    <div class="postcard-label">
+      DOCUMENT / NO. 001
+    </div>
+
+    <h2>
+      STILL<br>
+      BECOMING.
+    </h2>
+
+    <div class="postcard-line"></div>
+    <div class="postcard-line"></div>
+
+    <div class="postcard-bottom">
+      SAUDI ARABIA → WHEREVER NEXT
+    </div>
+
+  </div>
+
+
+  <div class="hand-note">
+    جيت وهو توّه…
+  </div>
+
+
+  <div class="portrait">
+
+    <div class="portrait-image">
+      PORTRAIT
+    </div>
+
+    <div class="portrait-caption">
+      LAST DOCUMENTED — SEPTEMBER 2026
+    </div>
+
+  </div>
+
+
+  <div class="stamp">
+
+    TOWWAH<br>
+    DOCUMENTED<br>
+    WHILE<br>
+    STILL OPEN
+
+  </div>
+
+
+  <div class="finjan">
+
+    <svg
+      viewBox="0 0 220 180"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+
+      <path
+        d="
+        M35 55
+        C60 72 145 72 170 55
+        L153 120
+        C135 143 70 143 51 120
+        Z
+        "
+        stroke="#263e58"
+        stroke-width="5"
+      />
+
+      <path
+        d="
+        M170 70
+        C205 63 205 113 159 110
+        "
+        stroke="#263e58"
+        stroke-width="5"
+      />
+
+      <path
+        d="
+        M52 83
+        C82 103 123 103 153 83
+        "
+        stroke="#263e58"
+        stroke-width="3"
+      />
+
+      <path
+        d="
+        M61 101
+        C87 117 118 117 143 101
+        "
+        stroke="#263e58"
+        stroke-width="3"
+      />
+
+    </svg>
+
+  </div>
+
+
+  <div class="archive-label">
+
+    <strong>
+      THE THING FROM HOME
+    </strong>
+
+    OBJECT 001 / FINJAN
+
+  </div>
+
+
+</section>
+
+
+<!-- MOVING ARABIC LOGO -->
+
+<section class="arabic-marquee">
+
+  <div class="arabic-track">
+
+    <span>تَوّه</span>
+    <span>تَوّه</span>
+    <span>تَوّه</span>
+    <span>تَوّه</span>
+
+    <span>تَوّه</span>
+    <span>تَوّه</span>
+    <span>تَوّه</span>
+    <span>تَوّه</span>
+
+  </div>
+
+</section>
+
+
+<!-- INTRO -->
+
+<section class="intro">
+
+  <div class="section-number">
+    01 / WHAT IS TOWWAH?
+  </div>
+
+  <div class="intro-text">
+
+    <h2>
+      People,<br>
+      before the ending.
+    </h2>
+
+    <p>
+      TOWWAH documents people while their stories
+      are still open — before we know what worked,
+      what changed, or who they eventually became.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- TRY BE NEXT -->
+
+<section class="be-next">
+
+  <div class="be-next-left">
+
+    <small>
+      OPEN CALL / ARCHIVE
+    </small>
+
+    <h2>
+      TRY<br>
+      BEING<br>
+      NEXT.
+    </h2>
+
+    <p>
+      You don't need to have figured it out.
+      That's kind of the point.
+    </p>
+
+  </div>
+
+
+  <div class="be-next-right">
+
+    <div class="arabic">
+      أوه، جرّب تكون التالي.
+    </div>
+
+    <p>
+      Leave your email. Tell us where you are
+      in your story right now.
+    </p>
+
+    <div class="email-form">
+
+      <input
+        type="email"
+        placeholder="YOUR EMAIL"
+      >
+
+      <button>
+        I'M HERE →
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- VISUAL DIARY -->
+
+<section class="diary">
+
+  <div class="diary-heading">
+
+    <h2>
+      THE<br>
+      VISUAL<br>
+      DIARY
+    </h2>
+
+    <span>
+      PEOPLE / ARCHIVE / 2026
+    </span>
+
+  </div>
+
+
+  <div class="diary-grid">
+
+
+    <article class="diary-card">
+
+      <div class="diary-photo">
+        PORTRAIT 001
+      </div>
+
+      <h3>
+        Name goes here
+      </h3>
+
+      <p>
+        LAST DOCUMENTED — 09.2026
+      </p>
+
+    </article>
+
+
+    <article class="diary-card">
+
+      <div class="diary-photo">
+        PORTRAIT 002
+      </div>
+
+      <h3>
+        Name goes here
+      </h3>
+
+      <p>
+        STILL IN PROGRESS
+      </p>
+
+    </article>
+
+
+    <article class="diary-card">
+
+      <div class="diary-photo">
+        PORTRAIT 003
+      </div>
+
+      <h3>
+        Name goes here
+      </h3>
+
+      <p>
+        WE'LL ASK AGAIN
+      </p>
+
+    </article>
+
+
+  </div>
+
+</section>
+
+
+<!-- FILMS -->
+
+<section class="films">
+
+  <div class="films-top">
+
+    <h2>
+      FILMS
+    </h2>
+
+    <span>
+      02 / MOVING ARCHIVE
+    </span>
+
+  </div>
+
+
+  <div class="film-box">
+
+    FILM / INTERVIEW / CLIP
+
+  </div>
+
+
+  <div class="film-caption">
+
+    <span>
+      TOWWAH FILM 001
+    </span>
+
+    <span>
+      WATCH →
+    </span>
+
+  </div>
+
+</section>
+
+
+<!-- EDITOR NOTE -->
+
+<section class="editor-note">
+
+  <div>
+
+    <span class="section-number">
+      03 / FROM THE EDITOR
+    </span>
+
+    <h2>
+      Notes from<br>
+      somewhere<br>
+      in-between.
+    </h2>
+
+  </div>
+
+
+  <div class="editor-copy">
+
+    <p>
+      A place for observations, unfinished thoughts,
+      field notes, and the things that don't quite
+      belong inside an interview.
+    </p>
+
+    <p>
+      Not everything needs an ending before it is
+      worth documenting.
+    </p>
+
+    <a href="#">
+      READ THE LATEST NOTE →
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- TIME CAPSULE -->
+
+<section class="capsule">
+
+  <small>
+    DOCUMENT YOURSELF / 04
+  </small>
+
+  <h2>
+    Leave something
+    for your future self.
+  </h2>
+
+  <textarea
+    placeholder="What feels unfinished right now?"
+  ></textarea>
+
+
+  <div class="capsule-bottom">
+
+    <span>
+      WRITTEN IN 2026
+    </span>
+
+    <span>
+      WE'LL ASK AGAIN.
+    </span>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="footer-logo">
+    TOWWAH
+  </div>
+
+  <div class="footer-small">
+
+    تَوّه<br>
+
+    PEOPLE STILL BECOMING<br>
+
+    © 2026
+
+  </div>
+
+</footer>
+
+
+</body>
+</html>
