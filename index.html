@@ -8,26 +8,16 @@
 
 <style>
 
-/* =========================================================
-   TOWWAH
-   dreamy / tactile / visual diary
-========================================================= */
-
 :root{
-  --cream:#f1eadb;
-  --cream-2:#e6dcc9;
-  --cream-3:#d9cdb8;
-
-  --black:#151412;
-  --soft-black:#2a2722;
-
-  --red:#a62d27;
-  --deep-red:#6f2527;
-  --wine:#762e35;
-
-  --brown:#594b3d;
-
-  --line:rgba(25,20,16,.22);
+  --paper:#f3eee4;
+  --paper2:#e9e0d1;
+  --paper3:#d8ccb9;
+  --ink:#171411;
+  --wine:#6f2025;
+  --red:#a63029;
+  --soft-red:#8d352f;
+  --coffee:#8f6944;
+  --line:rgba(23,20,17,.22);
 }
 
 *{
@@ -40,14 +30,23 @@ html{
 
 body{
   margin:0;
-  background:var(--cream);
-  color:var(--black);
-  font-family:Arial,Helvetica,sans-serif;
+  background:var(--paper);
+  color:var(--ink);
   overflow-x:hidden;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+button,
+input,
+textarea,
+select{
+  font:inherit;
 }
 
 
-/* PAPER GRAIN */
+/* =========================
+   GRAIN
+========================= */
 
 body::after{
   content:"";
@@ -55,1278 +54,925 @@ body::after{
   inset:0;
   pointer-events:none;
   z-index:9999;
-  opacity:.12;
-
+  opacity:.09;
   background-image:
-    radial-gradient(rgba(40,30,20,.8) .45px,transparent .45px);
-
+    radial-gradient(rgba(60,45,30,.8) .5px,transparent .5px);
   background-size:5px 5px;
 }
 
 
 /* =========================================================
-   MINI NAV
+   01 — INTRO / TYPEWRITER
 ========================================================= */
 
-.nav{
-  height:50px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  padding:0 28px;
-
-  border-bottom:1px solid var(--line);
-
-  position:relative;
-  z-index:30;
-
-  font-size:9px;
-  letter-spacing:.17em;
-  text-transform:uppercase;
-}
-
-.nav-center{
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
-
-  font-family:Georgia,serif;
-  text-transform:none;
-  letter-spacing:.03em;
-  font-size:12px;
-}
-
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero{
-  min-height:950px;
+.intro-screen{
+  min-height:100vh;
   position:relative;
   overflow:hidden;
-}
-
-
-/* giant moving TOWWAH */
-
-.word-river{
-  position:absolute;
-
-  top:55px;
-  left:0;
-
-  width:100%;
-
-  overflow:hidden;
-  white-space:nowrap;
-
-  z-index:1;
-}
-
-.word-track{
-  width:max-content;
   display:flex;
-
-  animation:moveTowwah 26s linear infinite;
-}
-
-.word-track span{
-  display:block;
-
-  padding-right:70px;
-
-  font-family:Georgia,"Times New Roman",serif;
-
-  font-size:clamp(125px,19vw,270px);
-
-  line-height:.75;
-
-  letter-spacing:-.085em;
-}
-
-@keyframes moveTowwah{
-
-  from{
-    transform:translateX(0);
-  }
-
-  to{
-    transform:translateX(-50%);
-  }
-
-}
-
-
-/* =========================================================
-   HERO COLLAGE
-========================================================= */
-
-.hero-world{
-  position:relative;
-  z-index:5;
-
-  width:min(1280px,95%);
-  height:840px;
-
-  margin:0 auto;
-}
-
-
-/* MAIN PAPER PHOTO */
-
-.main-photo{
-  position:absolute;
-
-  top:230px;
-  left:12%;
-
-  width:300px;
-
-  background:#eee5d4;
-
-  padding:11px 11px 38px;
-
-  transform:rotate(-4deg);
-
-  box-shadow:
-    0 24px 55px rgba(40,30,20,.14);
-}
-
-.photo-placeholder{
-  height:360px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #b8ac98,
-      #74695b
-    );
-
-  display:flex;
-  align-items:center;
+  align-items:flex-end;
   justify-content:center;
+  background:#f6f2ea;
+}
 
-  color:#ece3d4;
+.intro-whisper{
+  position:absolute;
+  top:30px;
+  left:30px;
+  font-size:8px;
+  letter-spacing:.18em;
+  opacity:.6;
+}
 
-  font-family:Georgia,serif;
+.typewriter-wrap{
+  position:relative;
+  width:min(760px,94vw);
+  height:760px;
+}
 
-  letter-spacing:.15em;
+
+/* paper */
+
+.type-paper{
+  position:absolute;
+  width:470px;
+  min-height:515px;
+  left:50%;
+  bottom:180px;
+  transform:translateX(-50%);
+  background:#f8f3e9;
+  border:1px solid rgba(60,50,40,.14);
+  box-shadow:0 18px 48px rgba(40,32,23,.12);
+  padding:45px 50px;
+  z-index:3;
+  animation:paperRise 2.2s ease forwards;
+}
+
+@keyframes paperRise{
+  from{
+    transform:translate(-50%,180px);
+  }
+  to{
+    transform:translate(-50%,0);
+  }
+}
+
+.paper-top{
+  display:flex;
+  justify-content:space-between;
+  border-bottom:1px solid var(--line);
+  padding-bottom:8px;
+  font-family:"Courier New",monospace;
   font-size:10px;
 }
 
-.main-photo p{
-  margin:12px 0 0;
-
-  font-size:8px;
-  letter-spacing:.14em;
-}
-
-
-/* torn visual diary paper */
-
-.diary-paper{
-  position:absolute;
-
-  top:215px;
-  left:43%;
-
-  width:355px;
-  min-height:235px;
-
-  padding:34px 34px 40px;
-
-  background:#f7f0e3;
-
-  transform:rotate(2.5deg);
-
-  box-shadow:
-    0 15px 40px rgba(40,30,20,.09);
-
-  clip-path:
-    polygon(
-      0 3%,
-      10% 0,
-      22% 2%,
-      33% 0,
-      45% 2%,
-      58% 0,
-      69% 2%,
-      81% 0,
-      92% 2%,
-      100% 0,
-      100% 96%,
-      90% 100%,
-      78% 97%,
-      67% 100%,
-      54% 97%,
-      40% 100%,
-      29% 97%,
-      15% 100%,
-      0 97%
-    );
-}
-
-.diary-paper small{
-  font-size:8px;
-  letter-spacing:.17em;
-}
-
-.diary-paper h1{
-  margin:35px 0 18px;
-
-  font-family:Georgia,"Times New Roman",serif;
-
-  font-size:44px;
-  font-weight:normal;
-
-  line-height:.88;
-
-  letter-spacing:-.04em;
-}
-
-.diary-paper p{
-  margin:0;
-
-  width:82%;
-
-  font-family:Georgia,serif;
-
-  font-size:14px;
-  font-style:italic;
-
-  line-height:1.5;
-}
-
-
-/* little Arabic note */
-
-.arabic-note{
-  position:absolute;
-
-  top:490px;
-  left:43%;
-
-  font-family:Georgia,"Times New Roman",serif;
-
-  color:var(--deep-red);
-
-  font-size:24px;
-
+.type-ar{
+  margin-top:90px;
+  text-align:center;
   direction:rtl;
+  font-size:42px;
+  font-family:Georgia,"Times New Roman",serif;
+  color:var(--wine);
+  opacity:0;
+  animation:appear .6s ease 2.4s forwards;
+}
 
-  transform:rotate(-7deg);
+.type-en{
+  margin-top:28px;
+  text-align:center;
+  font-family:"Courier New",monospace;
+  font-size:36px;
+  letter-spacing:.04em;
+  overflow:hidden;
+  white-space:nowrap;
+  width:0;
+  margin-left:auto;
+  margin-right:auto;
+  animation:
+    typeEnglish 1.8s steps(6,end) 3.2s forwards;
+}
+
+@keyframes typeEnglish{
+  to{
+    width:190px;
+  }
+}
+
+.underline{
+  width:0;
+  height:3px;
+  margin:13px auto 0;
+  background:var(--wine);
+  transform:rotate(-1deg);
+  animation:drawLine .7s ease 5.2s forwards;
+}
+
+@keyframes drawLine{
+  to{
+    width:200px;
+  }
+}
+
+.memory-note{
+  position:absolute;
+  bottom:35px;
+  left:30px;
+  font-family:"Courier New",monospace;
+  font-size:11px;
+}
+
+@keyframes appear{
+  to{opacity:1;}
 }
 
 
-/* tiny date strip */
+/* typewriter */
 
-.date-strip{
+.typewriter{
   position:absolute;
+  left:50%;
+  bottom:0;
+  width:600px;
+  height:245px;
+  transform:translateX(-50%);
+  z-index:5;
+}
 
-  top:585px;
-  right:12%;
+.machine-top{
+  position:absolute;
+  width:470px;
+  height:85px;
+  left:65px;
+  top:25px;
+  background:#9f987a;
+  border-radius:28px 28px 14px 14px;
+  box-shadow:
+    inset 0 -12px 20px rgba(0,0,0,.08),
+    0 18px 30px rgba(40,30,20,.17);
+}
 
-  border-top:1px solid var(--black);
-  border-bottom:1px solid var(--black);
+.machine-slot{
+  position:absolute;
+  left:110px;
+  right:110px;
+  height:11px;
+  top:16px;
+  border-radius:8px;
+  background:#292825;
+}
 
-  padding:8px 22px;
+.machine-body{
+  position:absolute;
+  left:15px;
+  right:15px;
+  top:90px;
+  height:145px;
+  background:#aba383;
+  clip-path:polygon(10% 0,90% 0,100% 100%,0 100%);
+  border-radius:10px;
+  box-shadow:0 18px 35px rgba(30,25,20,.18);
+}
 
+.keyboard{
+  position:absolute;
+  left:90px;
+  right:90px;
+  bottom:28px;
+  display:grid;
+  grid-template-columns:repeat(9,1fr);
+  gap:8px;
+  z-index:8;
+}
+
+.key{
+  height:23px;
+  border-radius:50%;
+  background:#e6dec9;
+  border:1px solid rgba(20,20,20,.22);
+  box-shadow:inset 0 -3px 4px rgba(0,0,0,.08);
+}
+
+.scroll-cue{
+  position:absolute;
+  bottom:22px;
+  right:30px;
   font-size:8px;
   letter-spacing:.17em;
-
-  transform:rotate(3deg);
 }
 
 
 /* =========================================================
-   PEARLS
+   02 — FOUNDER BOOK
 ========================================================= */
 
-.pearls{
-  position:absolute;
-
-  right:4%;
-  top:245px;
-
-  width:290px;
-  height:260px;
-
-  transform:rotate(12deg);
+.founder{
+  min-height:100vh;
+  padding:110px 7%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  border-top:1px solid var(--line);
+  background:var(--paper);
 }
 
-.pearl{
-  position:absolute;
-
-  width:38px;
-  height:38px;
-
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle at 32% 25%,
-      #fffdf6 0,
-      #f1e7d6 38%,
-      #cfc0a7 72%,
-      #a7967e 100%
-    );
-
-  box-shadow:
-    inset -4px -5px 7px rgba(110,88,62,.12),
-    4px 6px 10px rgba(58,45,35,.13);
+.section-kicker{
+  font-size:8px;
+  letter-spacing:.18em;
+  margin-bottom:50px;
 }
 
-.pearl::after{
-  content:"";
-
-  position:absolute;
-
-  width:6px;
-  height:6px;
-
-  border-radius:50%;
-
-  background:rgba(95,78,60,.30);
-
-  left:50%;
-  top:50%;
-
-  transform:translate(-50%,-50%);
+.founder-stage{
+  display:flex;
+  justify-content:center;
+  perspective:1800px;
 }
 
+.book{
+  width:min(880px,94vw);
+  min-height:570px;
+  position:relative;
+  cursor:pointer;
+  transform-style:preserve-3d;
+}
 
-/* curving pearl layout */
-
-.p1{left:20px;top:105px;}
-.p2{left:55px;top:82px;}
-.p3{left:93px;top:66px;}
-.p4{left:134px;top:63px;}
-.p5{left:175px;top:75px;}
-.p6{left:209px;top:99px;}
-.p7{left:232px;top:132px;}
-.p8{left:238px;top:172px;}
-.p9{left:220px;top:207px;}
-.p10{left:186px;top:227px;}
-
-.pearl-label{
+.book-cover{
   position:absolute;
+  inset:0;
+  z-index:4;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:55px;
+  background:var(--wine);
+  color:#f5eee1;
+  border-radius:3px 14px 14px 3px;
+  box-shadow:0 30px 65px rgba(60,30,25,.2);
+  transform-origin:left center;
+  transition:transform 1s cubic-bezier(.2,.7,.2,1);
+}
 
-  right:4%;
-  top:490px;
+.book-cover h2{
+  margin:0;
+  font-family:Georgia,serif;
+  font-weight:normal;
+  font-size:clamp(68px,10vw,135px);
+  line-height:.78;
+  letter-spacing:-.06em;
+}
 
-  width:220px;
+.book-cover small{
+  font-size:8px;
+  letter-spacing:.18em;
+}
 
+.book-cover .open-me{
+  align-self:flex-end;
   font-family:Georgia,serif;
   font-style:italic;
-
-  font-size:13px;
-
-  line-height:1.45;
+  font-size:14px;
 }
 
+.book.open .book-cover{
+  transform:rotateY(-118deg);
+}
 
-/* =========================================================
-   SAUDI FINJAN STILL LIFE
-========================================================= */
+.book-pages{
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:570px;
+  background:#f7f1e7;
+  box-shadow:0 25px 55px rgba(45,35,25,.12);
+}
 
-.finjan-scene{
+.book-page{
+  padding:60px 55px;
+  position:relative;
+}
+
+.book-page:first-child{
+  border-right:1px solid rgba(60,50,40,.18);
+}
+
+.book-page small{
+  font-size:8px;
+  letter-spacing:.17em;
+}
+
+.book-page h3{
+  font-family:Georgia,serif;
+  font-size:40px;
+  font-weight:normal;
+  line-height:.95;
+  margin:40px 0 28px;
+}
+
+.book-page p{
+  font-family:Georgia,serif;
+  font-size:17px;
+  line-height:1.7;
+}
+
+.margin-note{
   position:absolute;
-
-  left:2%;
-  bottom:8px;
-
-  width:370px;
-  height:220px;
-
+  bottom:35px;
+  left:55px;
+  color:var(--wine);
+  font-family:Georgia,serif;
+  font-style:italic;
   transform:rotate(-4deg);
 }
 
 
-/* shadow */
-
-.table-shadow{
-  position:absolute;
-
-  left:45px;
-  bottom:28px;
-
-  width:265px;
-  height:50px;
-
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      ellipse,
-      rgba(65,45,30,.20),
-      transparent 70%
-    );
-}
-
-
-/* finjan 1 */
-
-.finjan{
-  position:absolute;
-
-  width:112px;
-  height:62px;
-
-  background:
-    linear-gradient(
-      to bottom,
-      #fbf5e9 0,
-      #eee2cf 70%,
-      #d1c0a8 100%
-    );
-
-  border:
-    1px solid
-    rgba(72,58,43,.34);
-
-  border-radius:
-    13px
-    13px
-    48px
-    48px;
-
-  box-shadow:
-    0 13px 18px rgba(50,36,25,.12);
-}
-
-.finjan::before{
-  content:"";
-
-  position:absolute;
-
-  top:-7px;
-  left:8px;
-  right:8px;
-
-  height:18px;
-
-  border:
-    1px solid
-    rgba(60,48,36,.28);
-
-  border-radius:50%;
-
-  background:#dfbe78;
-}
-
-
-/* decorative Saudi-inspired bands */
-
-.finjan::after{
-  content:"";
-
-  position:absolute;
-
-  left:15px;
-  right:15px;
-  top:28px;
-
-  height:8px;
-
-  border-top:2px solid var(--deep-red);
-  border-bottom:1px solid var(--deep-red);
-}
-
-.cup1{
-  left:35px;
-  top:105px;
-
-  transform:rotate(-10deg);
-}
-
-.cup2{
-  left:135px;
-  top:60px;
-
-  transform:rotate(7deg);
-}
-
-.cup3{
-  left:235px;
-  top:112px;
-
-  transform:rotate(13deg);
-}
-
-
-/* extra details */
-
-.cup2::after{
-  border-color:#8c6537;
-}
-
-.cup3::after{
-  border-color:var(--wine);
-}
-
-.finjan-caption{
-  position:absolute;
-
-  left:92px;
-  bottom:-5px;
-
-  font-size:8px;
-  letter-spacing:.15em;
-}
-
-
 /* =========================================================
-   ARABIC WORD RIVER
-========================================================= */
-
-.arabic-river{
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-
-  overflow:hidden;
-  white-space:nowrap;
-
-  background:#ece3d3;
-}
-
-.arabic-track{
-  display:flex;
-
-  width:max-content;
-
-  animation:moveArabic 24s linear infinite;
-}
-
-.arabic-track span{
-  display:block;
-
-  padding:27px 55px 40px;
-
-  font-family:"Times New Roman",Georgia,serif;
-
-  font-size:clamp(90px,14vw,195px);
-
-  line-height:.78;
-
-  direction:rtl;
-}
-
-@keyframes moveArabic{
-
-  from{
-    transform:translateX(-45%);
-  }
-
-  to{
-    transform:translateX(0);
-  }
-
-}
-
-
-/* =========================================================
-   INTRO
-========================================================= */
-
-.intro{
-  padding:100px 8% 115px;
-
-  display:grid;
-
-  grid-template-columns:
-    .65fr
-    1.5fr;
-
-  gap:80px;
-
-  border-bottom:1px solid var(--line);
-}
-
-.micro{
-  font-size:8px;
-
-  letter-spacing:.17em;
-  line-height:1.8;
-
-  text-transform:uppercase;
-}
-
-.intro h2{
-  margin:0 0 28px;
-
-  font-family:Georgia,serif;
-
-  font-size:clamp(45px,6vw,86px);
-
-  font-weight:normal;
-
-  line-height:.9;
-
-  letter-spacing:-.045em;
-}
-
-.intro p{
-  max-width:570px;
-
-  font-family:Georgia,serif;
-
-  font-size:18px;
-
-  line-height:1.65;
-}
-
-
-/* =========================================================
-   EMAIL INVITATION
-========================================================= */
-
-.invite-section{
-  min-height:820px;
-
-  background:#a72d28;
-
-  position:relative;
-
-  overflow:hidden;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:100px 30px;
-
-  border-bottom:1px solid rgba(0,0,0,.3);
-}
-
-
-/* scratches / texture */
-
-.invite-section::before{
-  content:"";
-
-  position:absolute;
-  inset:0;
-
-  opacity:.14;
-
-  background:
-    repeating-linear-gradient(
-      11deg,
-      transparent 0 35px,
-      rgba(255,255,255,.18) 36px,
-      transparent 37px
-    );
-}
-
-
-/* whole envelope object */
-
-.envelope-wrap{
-  width:min(610px,92vw);
-  height:530px;
-
-  position:relative;
-
-  z-index:3;
-}
-
-
-/* back envelope */
-
-.envelope-back{
-  position:absolute;
-
-  left:0;
-  right:0;
-
-  bottom:0;
-
-  height:325px;
-
-  background:#e8dfc9;
-
-  border:1px solid rgba(50,40,25,.18);
-
-  box-shadow:
-    0 28px 60px rgba(44,18,14,.24);
-}
-
-
-/* rear flap */
-
-.envelope-back::before{
-  content:"";
-
-  position:absolute;
-
-  top:-175px;
-  left:72px;
-
-  width:465px;
-  height:270px;
-
-  background:#eee6d1;
-
-  border:1px solid rgba(50,40,25,.16);
-
-  clip-path:
-    polygon(
-      0 100%,
-      50% 0,
-      100% 100%
-    );
-}
-
-
-/* invitation card */
-
-.invitation-card{
-  position:absolute;
-
-  left:50%;
-
-  transform:translateX(-50%);
-
-  top:0;
-
-  width:78%;
-  min-height:385px;
-
-  padding:45px 48px;
-
-  background:#f1ead7;
-
-  border:
-    1px solid
-    rgba(50,40,25,.16);
-
-  box-shadow:
-    0 10px 25px rgba(45,25,15,.10);
-
-  z-index:3;
-}
-
-.invitation-card h3{
-  margin:0 0 38px;
-
-  font-family:Arial,Helvetica,sans-serif;
-
-  font-size:21px;
-
-  letter-spacing:-.04em;
-}
-
-.invitation-card p{
-  margin:0;
-
-  max-width:330px;
-
-  font-family:Georgia,serif;
-
-  font-size:16px;
-
-  line-height:1.45;
-}
-
-
-/* playful Arabic */
-
-.invitation-ar{
-  margin-top:28px;
-
-  font-family:Georgia,serif;
-
-  color:var(--deep-red);
-
-  font-size:21px;
-
-  direction:rtl;
-
-  text-align:left;
-}
-
-
-/* email inside card */
-
-.email-form{
-  margin-top:36px;
-
-  display:flex;
-  align-items:center;
-
-  border-bottom:1px solid var(--black);
-}
-
-.email-form input{
-  flex:1;
-
-  border:0;
-  outline:0;
-
-  background:transparent;
-
-  padding:12px 0;
-
-  color:var(--black);
-
-  font-family:Georgia,serif;
-
-  font-size:16px;
-}
-
-.email-form input::placeholder{
-  color:#6c665a;
-}
-
-.email-form button{
-  border:0;
-  background:transparent;
-
-  cursor:pointer;
-
-  padding:12px 3px 12px 15px;
-
-  font-size:9px;
-  letter-spacing:.13em;
-}
-
-
-/* front envelope */
-
-.envelope-front{
-  position:absolute;
-
-  left:0;
-  right:0;
-
-  bottom:0;
-
-  height:270px;
-
-  background:#e3dac6;
-
-  z-index:5;
-
-  clip-path:
-    polygon(
-      0 0,
-      50% 47%,
-      100% 0,
-      100% 100%,
-      0 100%
-    );
-
-  border:
-    1px solid
-    rgba(50,40,25,.16);
-
-  pointer-events:none;
-}
-
-
-/* Towwah branding on front */
-
-.envelope-logo{
-  position:absolute;
-
-  z-index:7;
-
-  bottom:70px;
-  left:50%;
-
-  transform:translateX(-50%);
-
-  text-align:center;
-
-  font-family:Georgia,serif;
-
-  font-size:43px;
-
-  line-height:.78;
-
-  letter-spacing:-.06em;
-
-  pointer-events:none;
-}
-
-.envelope-logo small{
-  display:block;
-
-  margin-top:14px;
-
-  font-family:Arial,sans-serif;
-
-  font-size:7px;
-
-  letter-spacing:.18em;
-}
-
-
-/* =========================================================
-   VISUAL DIARY
+   03 — VISUAL DIARY
 ========================================================= */
 
 .visual-diary{
   padding:120px 5% 150px;
-
-  background:#f4eee2;
-
-  overflow:hidden;
+  background:#f7f2e9;
+  border-top:1px solid var(--line);
 }
 
-.diary-head{
+.visual-head{
   display:flex;
   justify-content:space-between;
   align-items:flex-end;
-
-  margin-bottom:90px;
+  margin-bottom:100px;
 }
 
-.diary-head h2{
+.visual-head h2{
   margin:0;
-
   font-family:Georgia,serif;
-
-  font-size:clamp(70px,11vw,160px);
-
+  font-size:clamp(70px,12vw,175px);
   font-weight:normal;
-
-  line-height:.7;
-
+  line-height:.68;
   letter-spacing:-.075em;
 }
 
-.diary-grid{
-  display:grid;
-
-  grid-template-columns:
-    1.05fr
-    .72fr
-    1fr;
-
-  gap:50px;
-
-  align-items:start;
+.visual-head p{
+  max-width:290px;
+  font-family:Georgia,serif;
+  font-size:15px;
+  line-height:1.6;
 }
 
-.story{
+.memory-wall{
+  min-height:1100px;
   position:relative;
+  width:min(1250px,100%);
+  margin:auto;
 }
 
-.story:nth-child(2){
-  margin-top:130px;
+.polaroid{
+  position:absolute;
+  background:#f5efe5;
+  padding:11px 11px 36px;
+  box-shadow:0 18px 40px rgba(50,40,30,.12);
+  transition:.4s ease;
 }
 
-.story-photo{
+.polaroid:hover{
+  transform:translateY(-10px) rotate(0deg)!important;
+  z-index:20;
+}
+
+.polaroid-img{
   width:100%;
-  aspect-ratio:4 / 5;
-
+  height:100%;
+  min-height:250px;
   display:flex;
   align-items:center;
   justify-content:center;
-
-  background:
-    linear-gradient(
-      145deg,
-      #82776a,
-      #c6b8a3
-    );
-
-  color:#eee6da;
-
+  color:#f3ecdf;
   font-family:Georgia,serif;
-
-  font-size:11px;
-  letter-spacing:.16em;
-
-  box-shadow:
-    0 14px 35px rgba(40,30,20,.09);
+  font-size:12px;
+  letter-spacing:.12em;
+  background:linear-gradient(145deg,#81766b,#c5b8a4);
 }
 
-.story:nth-child(2) .story-photo{
-  transform:rotate(2deg);
+.p1{
+  width:310px;
+  left:4%;
+  top:80px;
+  transform:rotate(-4deg);
 }
 
-.story:nth-child(3) .story-photo{
-  transform:rotate(-1.5deg);
+.p2{
+  width:270px;
+  left:36%;
+  top:0;
+  transform:rotate(3deg);
 }
 
-.story small{
-  display:block;
-
-  margin-top:16px;
-
-  font-size:8px;
-  letter-spacing:.16em;
+.p3{
+  width:340px;
+  right:2%;
+  top:110px;
+  transform:rotate(-2deg);
 }
 
-.story h3{
-  margin:7px 0;
+.p4{
+  width:250px;
+  left:17%;
+  top:580px;
+  transform:rotate(5deg);
+}
 
+.p5{
+  width:320px;
+  left:48%;
+  top:510px;
+  transform:rotate(-5deg);
+}
+
+.object-card{
+  position:absolute;
+  right:4%;
+  top:670px;
+  width:250px;
+  padding:30px;
+  background:#ded2bd;
+  transform:rotate(3deg);
+}
+
+.object-card h4{
   font-family:Georgia,serif;
-
-  font-size:28px;
-
   font-weight:normal;
+  font-size:25px;
+  margin:15px 0;
 }
 
-.story p{
-  max-width:320px;
-
+.object-card p{
   font-family:Georgia,serif;
-
   font-size:14px;
-
   line-height:1.5;
 }
 
-
-/* floating line */
-
-.diary-scribble{
-  margin:100px 0 0 33%;
-
+.visual-scribble{
+  position:absolute;
+  left:6%;
+  top:470px;
   color:var(--wine);
-
   font-family:Georgia,serif;
-
+  font-size:24px;
   font-style:italic;
-
-  font-size:22px;
-
-  transform:rotate(-3deg);
+  transform:rotate(-5deg);
 }
 
 
 /* =========================================================
-   FILMS
+   04 — COFFEE / LETTER TO FUTURE SELF
 ========================================================= */
 
-.films{
-  padding:110px 6% 130px;
-
-  background:#181715;
-
-  color:var(--cream);
+.future{
+  min-height:100vh;
+  padding:110px 6%;
+  background:#d9d0c3;
+  position:relative;
+  overflow:hidden;
 }
 
-.films-top{
-  display:flex;
-
-  align-items:flex-start;
-  justify-content:space-between;
-
-  margin-bottom:75px;
+.future-intro{
+  text-align:center;
+  max-width:700px;
+  margin:0 auto 80px;
 }
 
-.films h2{
-  margin:0;
+.future-intro small{
+  font-size:8px;
+  letter-spacing:.18em;
+}
 
+.future-intro h2{
   font-family:Georgia,serif;
-
-  font-size:clamp(80px,13vw,180px);
-
+  font-size:clamp(50px,8vw,105px);
   font-weight:normal;
-
-  letter-spacing:-.08em;
-
-  line-height:.7;
+  line-height:.9;
+  margin:30px 0 20px;
 }
 
-.film{
-  min-height:570px;
+.future-intro p{
+  font-family:Georgia,serif;
+  font-size:17px;
+}
 
-  border:
-    1px solid
-    rgba(244,235,218,.30);
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+/* stylized coffee scene */
 
-  background:
-    radial-gradient(
-      circle at 55% 30%,
-      #4c453c,
-      #181715 65%
-    );
-
+.coffee-scene{
+  width:min(900px,95vw);
+  height:330px;
+  margin:0 auto 85px;
   position:relative;
 }
 
-.play{
-  width:105px;
-  height:105px;
+.left-hand,
+.right-hand{
+  position:absolute;
+  top:120px;
+  width:270px;
+  height:75px;
+  background:#c88f69;
+  border-radius:70px;
+}
 
-  border:
-    1px solid
-    rgba(255,255,255,.55);
+.left-hand{
+  left:-20px;
+  transform:rotate(4deg);
+}
 
+.right-hand{
+  right:-20px;
+  transform:rotate(-5deg);
+}
+
+.dallah{
+  position:absolute;
+  left:170px;
+  top:10px;
+  width:170px;
+  height:235px;
+}
+
+.dallah-body{
+  position:absolute;
+  left:28px;
+  bottom:0;
+  width:115px;
+  height:150px;
+  background:linear-gradient(90deg,#aaa49a,#e3ddd1,#8f8a80);
+  border-radius:48% 48% 32% 32%;
+}
+
+.dallah-top{
+  position:absolute;
+  left:52px;
+  top:28px;
+  width:65px;
+  height:55px;
+  background:#b8b1a5;
+  clip-path:polygon(20% 100%,0 30%,50% 0,100% 30%,80% 100%);
+}
+
+.spout{
+  position:absolute;
+  left:130px;
+  top:92px;
+  width:120px;
+  height:20px;
+  background:#aaa399;
+  transform:rotate(-14deg);
+  transform-origin:left center;
+  border-radius:0 20px 20px 0;
+}
+
+.coffee-stream{
+  position:absolute;
+  left:385px;
+  top:118px;
+  width:3px;
+  height:95px;
+  background:#6c4a2d;
+  transform:rotate(5deg);
+}
+
+.future-cup{
+  position:absolute;
+  left:390px;
+  top:200px;
+  width:115px;
+  height:66px;
+  background:#f1e7d8;
+  border-radius:10px 10px 50px 50px;
+  border:1px solid rgba(60,45,30,.25);
+}
+
+.future-cup::before{
+  content:"";
+  position:absolute;
+  top:-6px;
+  left:8px;
+  right:8px;
+  height:18px;
   border-radius:50%;
+  background:#c79d60;
+  border:1px solid rgba(60,45,30,.2);
+}
 
+.coffee-line{
+  position:absolute;
+  top:55px;
+  left:50%;
+  transform:translateX(-50%) rotate(-2deg);
+  color:var(--wine);
+  font-family:Georgia,serif;
+  font-style:italic;
+  font-size:24px;
+}
+
+
+/* letter */
+
+.future-letter{
+  width:min(760px,95vw);
+  margin:auto;
+  background:#f7f1e6;
+  padding:60px;
+  box-shadow:0 25px 60px rgba(60,45,35,.12);
+  transform:rotate(-1deg);
+}
+
+.future-letter label{
+  display:block;
+  font-size:8px;
+  letter-spacing:.17em;
+  margin-bottom:12px;
+}
+
+.future-letter textarea{
+  width:100%;
+  min-height:180px;
+  resize:vertical;
+  border:0;
+  border-bottom:1px solid var(--ink);
+  outline:none;
+  background:transparent;
+  font-family:Georgia,serif;
+  font-size:20px;
+  line-height:1.6;
+  padding:15px 0;
+}
+
+.year-row{
   display:flex;
+  gap:20px;
   align-items:center;
-  justify-content:center;
+  margin-top:35px;
+}
 
+.year-row select{
+  flex:1;
+  border:0;
+  border-bottom:1px solid var(--ink);
+  background:transparent;
+  padding:12px 0;
+  outline:none;
   font-family:Georgia,serif;
 }
 
-.film-info{
-  display:flex;
-  justify-content:space-between;
+.year-row button{
+  border:0;
+  background:var(--wine);
+  color:#f7f1e6;
+  padding:15px 22px;
+  cursor:pointer;
+}
 
-  padding-top:15px;
-
-  font-size:8px;
-  letter-spacing:.17em;
+.future-result{
+  margin-top:30px;
+  font-family:Georgia,serif;
+  font-style:italic;
+  display:none;
 }
 
 
 /* =========================================================
-   EDITOR NOTES
+   05 — NOTES / ARTICLES
 ========================================================= */
 
 .notes{
-  padding:115px 8%;
-
-  display:grid;
-
-  grid-template-columns:
-    .8fr
-    1.25fr;
-
-  gap:100px;
-
-  border-bottom:1px solid var(--line);
+  padding:110px 6% 130px;
+  background:#f5efe5;
+  border-top:1px solid var(--line);
 }
 
-.notes h2{
+.notes-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  margin-bottom:80px;
+}
+
+.notes-top h2{
   margin:0;
-
   font-family:Georgia,serif;
-
-  font-size:clamp(52px,7vw,95px);
-
+  font-size:clamp(65px,10vw,150px);
   font-weight:normal;
-
-  line-height:.88;
-
-  letter-spacing:-.05em;
+  line-height:.7;
+  letter-spacing:-.07em;
 }
 
-.note-sheet{
-  background:#e2d7c4;
-
-  padding:55px;
-
-  transform:rotate(1deg);
-
-  box-shadow:
-    0 16px 35px rgba(40,30,20,.08);
+.article-grid{
+  display:grid;
+  grid-template-columns:1.25fr .8fr .9fr;
+  gap:28px;
 }
 
-.note-sheet small{
-  font-size:8px;
-  letter-spacing:.17em;
+.article{
+  padding-top:15px;
+  border-top:1px solid var(--ink);
 }
 
-.note-sheet p{
-  margin:34px 0;
-
-  font-family:Georgia,serif;
-
-  font-size:19px;
-
-  line-height:1.65;
+.article:nth-child(2){
+  margin-top:100px;
 }
 
-.note-sheet a{
-  color:inherit;
-
-  text-decoration:none;
-
+.article-number{
   font-size:8px;
   letter-spacing:.16em;
+}
 
-  border-bottom:1px solid;
+.article-img{
+  height:300px;
+  margin-top:20px;
+  background:linear-gradient(135deg,#b7aa96,#72685c);
+}
+
+.article h3{
+  font-family:Georgia,serif;
+  font-size:30px;
+  font-weight:normal;
+  line-height:1;
+  margin:20px 0 10px;
+}
+
+.article p{
+  font-family:Georgia,serif;
+  font-size:14px;
+  line-height:1.6;
 }
 
 
 /* =========================================================
-   LEAVE SOMETHING
+   06 — FINAL ENVELOPE
 ========================================================= */
 
-.leave{
-  min-height:700px;
-
-  padding:115px 8%;
-
-  background:var(--deep-red);
-
-  color:#f3eadb;
-}
-
-.leave small{
-  font-size:8px;
-  letter-spacing:.17em;
-}
-
-.leave h2{
-  max-width:950px;
-
-  margin:55px 0;
-
-  font-family:Georgia,serif;
-
-  font-size:clamp(58px,9vw,125px);
-
-  font-weight:normal;
-
-  line-height:.84;
-
-  letter-spacing:-.06em;
-}
-
-.leave textarea{
-  width:100%;
-  min-height:170px;
-
-  background:transparent;
-
-  border:0;
-  border-bottom:
-    1px solid
-    rgba(255,255,255,.65);
-
-  outline:0;
-
-  resize:vertical;
-
-  color:#f3eadb;
-
-  font-family:Georgia,serif;
-
-  font-size:20px;
-
-  padding:20px 0;
-}
-
-.leave textarea::placeholder{
-  color:
-    rgba(243,234,219,.55);
-}
-
-.leave-meta{
+.final{
+  min-height:100vh;
+  background:var(--red);
+  position:relative;
   display:flex;
-  justify-content:space-between;
+  align-items:center;
+  justify-content:center;
+  padding:90px 20px;
+  overflow:hidden;
+}
 
-  margin-top:18px;
+.final::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:.08;
+  background:
+    repeating-linear-gradient(
+      18deg,
+      transparent 0 40px,
+      rgba(255,255,255,.3) 41px,
+      transparent 42px
+    );
+}
 
+.envelope{
+  width:min(650px,92vw);
+  height:520px;
+  position:relative;
+}
+
+.envelope-back{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:330px;
+  background:#e9e0ca;
+  box-shadow:0 28px 60px rgba(50,20,15,.24);
+}
+
+.envelope-back::before{
+  content:"";
+  position:absolute;
+  left:10%;
+  width:80%;
+  top:-185px;
+  height:220px;
+  background:#eee6d2;
+  clip-path:polygon(0 100%,50% 0,100% 100%);
+}
+
+.invite-card{
+  position:absolute;
+  width:76%;
+  left:12%;
+  top:60px;
+  min-height:350px;
+  background:#f2ead8;
+  padding:48px;
+  z-index:3;
+  transition:.8s ease;
+}
+
+.envelope.open .invite-card{
+  transform:translateY(-120px);
+}
+
+.invite-card h2{
+  font-size:24px;
+  margin:0 0 38px;
+}
+
+.invite-card p{
+  font-family:Georgia,serif;
+  font-size:17px;
+  line-height:1.55;
+}
+
+.choice-row{
+  display:flex;
+  gap:10px;
+  margin:30px 0;
+  flex-wrap:wrap;
+}
+
+.choice{
+  border:1px solid var(--ink);
+  background:transparent;
+  padding:10px 12px;
+  cursor:pointer;
+  font-size:9px;
+  letter-spacing:.1em;
+}
+
+.choice.active{
+  background:var(--ink);
+  color:var(--paper);
+}
+
+.final-email{
+  display:flex;
+  border-bottom:1px solid var(--ink);
+}
+
+.final-email input{
+  flex:1;
+  border:0;
+  background:transparent;
+  outline:none;
+  padding:14px 0;
+  font-family:Georgia,serif;
+}
+
+.final-email button{
+  border:0;
+  background:transparent;
+  cursor:pointer;
+}
+
+.envelope-front{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:280px;
+  background:#e2d8c1;
+  clip-path:polygon(0 0,50% 47%,100% 0,100% 100%,0 100%);
+  z-index:5;
+}
+
+.heart{
+  position:absolute;
+  left:50%;
+  bottom:115px;
+  transform:translateX(-50%);
+  z-index:8;
+  width:68px;
+  height:68px;
+  border-radius:50%;
+  border:0;
+  background:var(--wine);
+  color:#f5eee1;
+  font-size:28px;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.heart:hover{
+  transform:translateX(-50%) scale(1.08);
+}
+
+.envelope.open .heart{
+  opacity:0;
+  pointer-events:none;
+}
+
+.final-caption{
+  position:absolute;
+  bottom:28px;
+  left:50%;
+  transform:translateX(-50%);
+  color:#f5eee1;
   font-size:8px;
-  letter-spacing:.15em;
+  letter-spacing:.18em;
 }
 
 
@@ -1335,70 +981,24 @@ body::after{
 ========================================================= */
 
 footer{
-  padding:60px 6% 50px;
-
+  padding:55px 6%;
   display:flex;
-
-  justify-content:space-between;
   align-items:flex-end;
+  justify-content:space-between;
 }
 
 .footer-logo{
   font-family:Georgia,serif;
-
-  font-size:clamp(80px,14vw,190px);
-
-  letter-spacing:-.08em;
-
+  font-size:clamp(75px,14vw,190px);
   line-height:.7;
+  letter-spacing:-.08em;
 }
 
-.footer-right{
+.footer-small{
   text-align:right;
-
   font-size:8px;
-
-  letter-spacing:.15em;
-
   line-height:1.9;
-}
-
-
-/* =========================================================
-   LITTLE MOTION
-========================================================= */
-
-.main-photo,
-.diary-paper,
-.pearls,
-.finjan-scene,
-.postcard{
-  transition:
-    transform .5s ease;
-}
-
-.main-photo:hover{
-  transform:
-    rotate(-2deg)
-    translateY(-7px);
-}
-
-.diary-paper:hover{
-  transform:
-    rotate(1deg)
-    translateY(-6px);
-}
-
-.pearls:hover{
-  transform:
-    rotate(8deg)
-    translateY(-5px);
-}
-
-.finjan-scene:hover{
-  transform:
-    rotate(-2deg)
-    translateY(-6px);
+  letter-spacing:.15em;
 }
 
 
@@ -1408,141 +1008,89 @@ footer{
 
 @media(max-width:800px){
 
-  .nav{
-    padding:0 14px;
+  .typewriter-wrap{
+    height:720px;
   }
 
-  .nav-center{
-    display:none;
+  .type-paper{
+    width:82vw;
+    padding:35px 25px;
   }
 
-  .hero{
-    min-height:1100px;
+  .typewriter{
+    transform:translateX(-50%) scale(.72);
+    transform-origin:bottom center;
   }
 
-  .hero-world{
-    height:1000px;
-  }
-
-  .main-photo{
-    width:66%;
-
-    left:4%;
-    top:230px;
-  }
-
-  .photo-placeholder{
-    height:320px;
-  }
-
-  .diary-paper{
-    width:70%;
-
-    left:25%;
-    top:565px;
-  }
-
-  .arabic-note{
-    top:830px;
-    left:8%;
-  }
-
-  .pearls{
-    width:220px;
-
-    transform:scale(.75) rotate(10deg);
-
-    transform-origin:top right;
-
-    right:-10px;
-    top:200px;
-  }
-
-  .pearl-label{
-    display:none;
-  }
-
-  .date-strip{
-    display:none;
-  }
-
-  .finjan-scene{
-    bottom:0;
-    left:-20px;
-
-    transform:scale(.77) rotate(-4deg);
-
-    transform-origin:left bottom;
-  }
-
-  .intro,
-  .notes{
-    grid-template-columns:1fr;
-
-    gap:40px;
-
-    padding:
-      80px
-      7%;
-  }
-
-  .invite-section{
+  .book{
     min-height:720px;
-
-    padding:
-      80px
-      16px;
   }
 
-  .envelope-wrap{
-    height:520px;
-  }
-
-  .invitation-card{
-    width:84%;
-
-    padding:
-      35px
-      28px;
-  }
-
-  .envelope-back::before{
-    left:10%;
-
-    width:80%;
-  }
-
-  .diary-grid{
+  .book-pages{
     grid-template-columns:1fr;
-
-    gap:80px;
   }
 
-  .story:nth-child(2){
+  .book-page:first-child{
+    border-right:0;
+    border-bottom:1px solid var(--line);
+  }
+
+  .memory-wall{
+    min-height:1800px;
+  }
+
+  .polaroid{
+    position:relative!important;
+    width:78%!important;
+    left:auto!important;
+    right:auto!important;
+    top:auto!important;
+    margin:0 auto 65px;
+  }
+
+  .object-card{
+    position:relative;
+    right:auto;
+    top:auto;
+    width:78%;
+    margin:0 auto;
+  }
+
+  .visual-scribble{
+    display:none;
+  }
+
+  .coffee-scene{
+    transform:scale(.72);
+    transform-origin:center;
+    margin-top:-40px;
+    margin-bottom:10px;
+  }
+
+  .future-letter{
+    padding:35px 28px;
+  }
+
+  .year-row{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .article-grid{
+    grid-template-columns:1fr;
+  }
+
+  .article:nth-child(2){
     margin-top:0;
-  }
-
-  .diary-scribble{
-    margin:
-      70px
-      0
-      0
-      5%;
-  }
-
-  .film{
-    min-height:340px;
   }
 
   footer{
     flex-direction:column;
-
     align-items:flex-start;
-
-    gap:40px;
+    gap:35px;
   }
 
-  .footer-right{
+  .footer-small{
     text-align:left;
   }
 
@@ -1555,142 +1103,191 @@ footer{
 <body>
 
 
-<!-- =========================
-     NAV
-========================= -->
+<!-- =====================================================
+     INTRO
+===================================================== -->
 
-<header class="nav">
+<section class="intro-screen">
 
-  <span>
-    TOWWAH
-  </span>
+  <div class="intro-whisper">
+    TOWWAH / EST. 2026
+  </div>
 
-  <span class="nav-center">
-    people, while they're still becoming
-  </span>
-
-  <span>
-    تَوّه
-  </span>
-
-</header>
+  <div class="typewriter-wrap">
 
 
-<!-- =========================
-     HERO
-========================= -->
+    <div class="type-paper">
 
-<section class="hero">
+      <div class="paper-top">
+
+        <span>
+          omont.2026
+        </span>
+
+        <span>
+          being office
+        </span>
+
+      </div>
 
 
-  <div class="word-river">
+      <div class="type-ar">
+        جيت وهو توّه
+      </div>
 
-    <div class="word-track">
 
-      <span>TOWWAH</span>
-      <span>TOWWAH</span>
-      <span>TOWWAH</span>
-      <span>TOWWAH</span>
+      <div class="type-en">
+        TOWWAH
+      </div>
 
-      <span>TOWWAH</span>
-      <span>TOWWAH</span>
-      <span>TOWWAH</span>
-      <span>TOWWAH</span>
+
+      <div class="underline"></div>
+
+
+      <div class="memory-note">
+        old memory of a new time ....
+      </div>
+
+    </div>
+
+
+    <div class="typewriter">
+
+      <div class="machine-top">
+        <div class="machine-slot"></div>
+      </div>
+
+      <div class="machine-body"></div>
+
+      <div class="keyboard">
+
+        <div class="key"></div>
+        <div class="key"></div>
+        <div class="key"></div>
+        <div class="key"></div>
+        <div class="key"></div>
+        <div class="key"></div>
+        <div class="key"></div>
+        <div class="key"></div>
+        <div class="key"></div>
+
+        <div class="key"></div>
+        <div class="key"></div>
+        <div class="key"></div>
+        <div class="key"></div>
+        <div class="key"></div>
+        <div class="key"></div>
+        <div class="key"></div>
+        <div class="key"></div>
+        <div class="key"></div>
+
+      </div>
 
     </div>
 
   </div>
 
 
-  <div class="hero-world">
+  <div class="scroll-cue">
+    SCROLL TO ENTER ↓
+  </div>
+
+</section>
 
 
-    <!-- portrait -->
 
-    <div class="main-photo">
+<!-- =====================================================
+     FOUNDER
+===================================================== -->
 
-      <div class="photo-placeholder">
-        PORTRAIT / 001
+<section class="founder">
+
+  <div class="section-kicker">
+    01 / BEFORE ANYONE ELSE — THE FOUNDER
+  </div>
+
+
+  <div class="founder-stage">
+
+
+    <div class="book" id="founderBook">
+
+
+      <div class="book-cover">
+
+        <small>
+          TOWWAH / PRIVATE NOTES
+        </small>
+
+        <h2>
+          WHY<br>
+          TOWWAH?
+        </h2>
+
+        <div class="open-me">
+          click to open
+        </div>
+
       </div>
 
-      <p>
-        SOMEWHERE BETWEEN NOW + NEXT
-      </p>
 
-    </div>
+      <div class="book-pages">
 
 
-    <!-- visual diary paper -->
+        <div class="book-page">
 
-    <div class="diary-paper">
+          <small>
+            LEFT PAGE / 001
+          </small>
 
-      <small>
-        A VISUAL DIARY / 2026
-      </small>
+          <h3>
+            I didn't want
+            to meet people
+            after the answer.
+          </h3>
 
-      <h1>
-        caught<br>
-        somewhere<br>
-        in-between.
-      </h1>
+          <p>
+            TOWWAH started with a simple thought:
+            some of the most interesting parts of a life
+            happen before anyone knows what they mean.
+          </p>
 
-      <p>
-        not after it worked out.
-        not once the story makes sense.
-        now.
-      </p>
+          <div class="margin-note">
+            before the ending.
+          </div>
 
-    </div>
-
-
-    <div class="arabic-note">
-      جيت وهو توّه…
-    </div>
+        </div>
 
 
-    <!-- pearls -->
+        <div class="book-page">
 
-    <div class="pearls">
+          <small>
+            RIGHT PAGE / FROM THE FOUNDER
+          </small>
 
-      <div class="pearl p1"></div>
-      <div class="pearl p2"></div>
-      <div class="pearl p3"></div>
-      <div class="pearl p4"></div>
-      <div class="pearl p5"></div>
-      <div class="pearl p6"></div>
-      <div class="pearl p7"></div>
-      <div class="pearl p8"></div>
-      <div class="pearl p9"></div>
-      <div class="pearl p10"></div>
+          <h3>
+            So I wanted
+            to arrive earlier.
+          </h3>
 
-    </div>
+          <p>
+            While someone is changing their mind.
+            Starting something. Leaving something.
+            Missing home. Becoming less certain.
+            Becoming more themselves.
+          </p>
+
+          <p>
+            Not a success story.
+            Not a lesson.
+            Just a moment worth keeping.
+          </p>
+
+        </div>
 
 
-    <div class="pearl-label">
-      little things we carry
-      while everything else is changing.
-    </div>
-
-
-    <!-- Saudi finjan composition -->
-
-    <div class="finjan-scene">
-
-      <div class="table-shadow"></div>
-
-      <div class="finjan cup1"></div>
-      <div class="finjan cup2"></div>
-      <div class="finjan cup3"></div>
-
-      <div class="finjan-caption">
-        قهوة / BEFORE THE STORY HAS AN ENDING
       </div>
 
-    </div>
-
-
-    <div class="date-strip">
-      LAST DOCUMENTED — SEPTEMBER 2026
     </div>
 
 
@@ -1699,93 +1296,368 @@ footer{
 </section>
 
 
-<!-- =========================
-     ARABIC RIVER
-========================= -->
 
-<section class="arabic-river">
+<!-- =====================================================
+     VISUAL DIARY
+===================================================== -->
 
-  <div class="arabic-track">
+<section class="visual-diary">
 
-    <span>تَوّه</span>
-    <span>تَوّه</span>
-    <span>تَوّه</span>
-    <span>تَوّه</span>
-
-    <span>تَوّه</span>
-    <span>تَوّه</span>
-    <span>تَوّه</span>
-    <span>تَوّه</span>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     ABOUT
-========================= -->
-
-<section class="intro">
-
-  <div class="micro">
-    01<br>
-    ABOUT TOWWAH
-  </div>
-
-
-  <div>
+  <div class="visual-head">
 
     <h2>
-      Before we know<br>
-      how it ends.
+      THE<br>
+      VISUAL<br>
+      DIARY
     </h2>
 
     <p>
-      TOWWAH meets people while something is
-      still changing — while the decision is still
-      open, the dream is still awkward, and the
-      next version of them hasn't arrived yet.
+      people, their rooms,
+      the things they carry,
+      and whatever was around
+      while we talked.
     </p>
 
   </div>
 
+
+  <div class="memory-wall">
+
+
+    <div class="polaroid p1">
+
+      <div class="polaroid-img">
+        PORTRAIT / 001
+      </div>
+
+    </div>
+
+
+    <div class="polaroid p2">
+
+      <div class="polaroid-img">
+        THEIR ROOM
+      </div>
+
+    </div>
+
+
+    <div class="polaroid p3">
+
+      <div class="polaroid-img">
+        THE OBJECT
+      </div>
+
+    </div>
+
+
+    <div class="visual-scribble">
+      a person is never just the portrait →
+    </div>
+
+
+    <div class="polaroid p4">
+
+      <div class="polaroid-img">
+        SOMEONE CLOSE
+      </div>
+
+    </div>
+
+
+    <div class="polaroid p5">
+
+      <div class="polaroid-img">
+        AFTER THE INTERVIEW
+      </div>
+
+    </div>
+
+
+    <div class="object-card">
+
+      <small>
+        FOUND WITH THEM
+      </small>
+
+      <h4>
+        the thing
+        from home.
+      </h4>
+
+      <p>
+        One object.
+        One reason it came.
+        One part of the story
+        that doesn't need explaining.
+      </p>
+
+    </div>
+
+
+  </div>
+
 </section>
 
 
-<!-- =========================
+
+<!-- =====================================================
+     FUTURE SELF
+===================================================== -->
+
+<section class="future">
+
+  <div class="future-intro">
+
+    <small>
+      YOU DON'T HAVE TO BE INTERVIEWED
+    </small>
+
+    <h2>
+      while you're still
+      “taww”...
+    </h2>
+
+    <p>
+      leave something here.
+      we'll give it back when you choose.
+    </p>
+
+  </div>
+
+
+  <div class="coffee-scene">
+
+
+    <div class="coffee-line">
+      وأنت توّك… وش ودك تقول لنفسك اللي بعدين؟
+    </div>
+
+
+    <div class="left-hand"></div>
+
+
+    <div class="dallah">
+
+      <div class="dallah-top"></div>
+
+      <div class="dallah-body"></div>
+
+      <div class="spout"></div>
+
+    </div>
+
+
+    <div class="coffee-stream"></div>
+
+
+    <div class="future-cup"></div>
+
+
+    <div class="right-hand"></div>
+
+
+  </div>
+
+
+  <div class="future-letter">
+
+    <label>
+      A LETTER FROM NOW
+    </label>
+
+    <textarea
+      id="futureMessage"
+      placeholder="what do you want the future version of you to remember?"
+    ></textarea>
+
+
+    <div class="year-row">
+
+      <select id="futureYear">
+
+        <option value="">
+          choose a year
+        </option>
+
+        <option>2027</option>
+        <option>2028</option>
+        <option>2029</option>
+        <option>2030</option>
+        <option>2031</option>
+        <option>2032</option>
+        <option>2033</option>
+        <option>2034</option>
+        <option>2035</option>
+
+      </select>
+
+
+      <button
+        type="button"
+        id="sealFuture"
+      >
+        SEAL IT
+      </button>
+
+    </div>
+
+
+    <div
+      class="future-result"
+      id="futureResult"
+    ></div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     NOTES
+===================================================== -->
+
+<section class="notes">
+
+  <div class="notes-top">
+
+    <h2>
+      NOTES
+    </h2>
+
+    <div class="section-kicker">
+      THINGS WORTH STAYING FOR
+    </div>
+
+  </div>
+
+
+  <div class="article-grid">
+
+
+    <article class="article">
+
+      <div class="article-number">
+        NOTE / 001
+      </div>
+
+      <div class="article-img"></div>
+
+      <h3>
+        Is caring still cool?
+      </h3>
+
+      <p>
+        A note about attention,
+        presence and why some things
+        deserve more than a scroll.
+      </p>
+
+    </article>
+
+
+    <article class="article">
+
+      <div class="article-number">
+        NOTE / 002
+      </div>
+
+      <div class="article-img"></div>
+
+      <h3>
+        Things people say
+        after the camera stops.
+      </h3>
+
+      <p>
+        Field notes from conversations
+        that didn't quite belong
+        inside the final piece.
+      </p>
+
+    </article>
+
+
+    <article class="article">
+
+      <div class="article-number">
+        NOTE / 003
+      </div>
+
+      <div class="article-img"></div>
+
+      <h3>
+        The objects
+        we bring with us.
+      </h3>
+
+      <p>
+        On memory, home,
+        and ordinary things
+        becoming evidence.
+      </p>
+
+    </article>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
      INVITATION
-========================= -->
+===================================================== -->
 
-<section class="invite-section">
+<section class="final">
 
 
-  <div class="envelope-wrap">
+  <div
+    class="envelope"
+    id="finalEnvelope"
+  >
 
 
     <div class="envelope-back"></div>
 
 
-    <div class="invitation-card">
+    <div class="invite-card">
 
-      <h3>
+
+      <h2>
         YOU'RE INVITED
-      </h3>
+      </h2>
 
 
       <p>
-        Oh — maybe you're next.
-        Leave your email and tell us where
-        you are in your story right now.
+        Maybe you want to be part of TOWWAH.
+        Maybe you just want to stay close.
+        Either one is enough.
       </p>
 
 
-      <div class="invitation-ar">
-        يمكن نجيك وأنت توّك.
+      <div class="choice-row">
+
+        <button
+          class="choice"
+          type="button"
+        >
+          I WANT TO BE PART OF TOWWAH
+        </button>
+
+        <button
+          class="choice"
+          type="button"
+        >
+          JUST KEEP ME CLOSE
+        </button>
+
       </div>
 
 
-      <div class="email-form">
+      <div class="final-email">
 
         <input
           type="email"
@@ -1798,279 +1670,177 @@ footer{
 
       </div>
 
+
     </div>
 
 
     <div class="envelope-front"></div>
 
 
-    <div class="envelope-logo">
+    <button
+      class="heart"
+      id="heartButton"
+      type="button"
+      aria-label="Open invitation"
+    >
+      ♥
+    </button>
 
-      towwah
 
-      <small>
-        AN OPEN INVITATION
-      </small>
-
-    </div>
+  </div>
 
 
+  <div class="final-caption">
+    PRESS THE HEART
   </div>
 
 </section>
 
 
-<!-- =========================
-     VISUAL DIARY
-========================= -->
-
-<section class="visual-diary">
-
-
-  <div class="diary-head">
-
-    <h2>
-      THE<br>
-      VISUAL<br>
-      DIARY
-    </h2>
-
-    <div class="micro">
-      PEOPLE<br>
-      IN PROGRESS
-    </div>
-
-  </div>
-
-
-  <div class="diary-grid">
-
-
-    <article class="story">
-
-      <div class="story-photo">
-        IMAGE / 001
-      </div>
-
-      <small>
-        LAST DOCUMENTED — 09.2026
-      </small>
-
-      <h3>
-        Name goes here
-      </h3>
-
-      <p>
-        One sentence about what is still unresolved.
-      </p>
-
-    </article>
-
-
-    <article class="story">
-
-      <div class="story-photo">
-        IMAGE / 002
-      </div>
-
-      <small>
-        STILL OPEN
-      </small>
-
-      <h3>
-        Name goes here
-      </h3>
-
-      <p>
-        A life that doesn't have to make sense yet.
-      </p>
-
-    </article>
-
-
-    <article class="story">
-
-      <div class="story-photo">
-        IMAGE / 003
-      </div>
-
-      <small>
-        WE'LL ASK AGAIN
-      </small>
-
-      <h3>
-        Name goes here
-      </h3>
-
-      <p>
-        This isn't where the story ends.
-      </p>
-
-    </article>
-
-
-  </div>
-
-
-  <div class="diary-scribble">
-    we'll come back.
-  </div>
-
-
-</section>
-
-
-<!-- =========================
-     FILMS
-========================= -->
-
-<section class="films">
-
-
-  <div class="films-top">
-
-    <h2>
-      FILMS
-    </h2>
-
-    <div class="micro">
-      MOVING<br>
-      DIARY / 02
-    </div>
-
-  </div>
-
-
-  <div class="film">
-
-    <div class="play">
-      PLAY
-    </div>
-
-  </div>
-
-
-  <div class="film-info">
-
-    <span>
-      TOWWAH FILM / 001
-    </span>
-
-    <span>
-      WATCH →
-    </span>
-
-  </div>
-
-
-</section>
-
-
-<!-- =========================
-     NOTES
-========================= -->
-
-<section class="notes">
-
-
-  <div>
-
-    <div class="micro">
-      03 / NOTES
-    </div>
-
-    <h2>
-      Things I noticed
-      along the way.
-    </h2>
-
-  </div>
-
-
-  <div class="note-sheet">
-
-    <small>
-      FROM THE EDITOR
-    </small>
-
-    <p>
-      A place for the pieces that don't belong
-      inside an interview — observations,
-      unfinished thoughts, field notes,
-      conversations, and things worth remembering.
-    </p>
-
-    <a href="#">
-      READ THE LATEST NOTE →
-    </a>
-
-  </div>
-
-
-</section>
-
-
-<!-- =========================
-     TIME CAPSULE
-========================= -->
-
-<section class="leave">
-
-
-  <small>
-    04 / LEAVE SOMETHING HERE
-  </small>
-
-
-  <h2>
-    What feels unfinished
-    right now?
-  </h2>
-
-
-  <textarea
-    placeholder="write something your future self might want to find again..."
-  ></textarea>
-
-
-  <div class="leave-meta">
-
-    <span>
-      WRITTEN NOW
-    </span>
-
-    <span>
-      WE'LL ASK AGAIN.
-    </span>
-
-  </div>
-
-
-</section>
-
-
-<!-- =========================
-     FOOTER
-========================= -->
 
 <footer>
-
 
   <div class="footer-logo">
     TOWWAH
   </div>
 
-
-  <div class="footer-right">
+  <div class="footer-small">
 
     تَوّه<br>
-    PEOPLE STILL BECOMING<br>
+    OLD MEMORY OF A NEW TIME<br>
     EST. 2026
 
   </div>
 
-
 </footer>
+
+
+
+<script>
+
+/* ==================================
+   OPEN FOUNDER BOOK
+================================== */
+
+const founderBook =
+document.getElementById("founderBook");
+
+founderBook.addEventListener(
+  "click",
+  function(){
+
+    founderBook
+      .classList
+      .toggle("open");
+
+  }
+);
+
+
+/* ==================================
+   FUTURE LETTER
+================================== */
+
+const sealFuture =
+document.getElementById("sealFuture");
+
+const futureYear =
+document.getElementById("futureYear");
+
+const futureMessage =
+document.getElementById("futureMessage");
+
+const futureResult =
+document.getElementById("futureResult");
+
+
+sealFuture.addEventListener(
+  "click",
+  function(){
+
+    if(
+      futureYear.value === ""
+      ||
+      futureMessage.value.trim() === ""
+    ){
+
+      futureResult.style.display = "block";
+
+      futureResult.textContent =
+        "write something first — and choose when you want to meet it again.";
+
+      return;
+
+    }
+
+    futureResult.style.display = "block";
+
+    futureResult.innerHTML =
+      "sealed for <strong>"
+      +
+      futureYear.value
+      +
+      "</strong>.<br>"
+      +
+      "by then, you probably won't be the same kind of “taww.”";
+
+  }
+);
+
+
+/* ==================================
+   ENVELOPE
+================================== */
+
+const heartButton =
+document.getElementById("heartButton");
+
+const finalEnvelope =
+document.getElementById("finalEnvelope");
+
+
+heartButton.addEventListener(
+  "click",
+  function(){
+
+    finalEnvelope
+      .classList
+      .add("open");
+
+  }
+);
+
+
+/* ==================================
+   INVITATION CHOICE
+================================== */
+
+const choices =
+document.querySelectorAll(".choice");
+
+
+choices.forEach(
+  function(choice){
+
+    choice.addEventListener(
+      "click",
+      function(){
+
+        choices.forEach(
+          function(item){
+            item.classList.remove("active");
+          }
+        );
+
+        choice.classList.add("active");
+
+      }
+    );
+
+  }
+);
+
+</script>
 
 
 </body>
