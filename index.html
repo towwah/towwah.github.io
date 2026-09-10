@@ -4,1016 +4,1546 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>TOWWAH | تَوّه</title>
+<title>TOWWAH — تَوّه</title>
 
 <style>
 
-/* =========================
-   BASE
-========================= */
+/* =========================================================
+   TOWWAH
+   dreamy / tactile / visual diary
+========================================================= */
 
-* {
-  box-sizing: border-box;
+:root{
+  --cream:#f1eadb;
+  --cream-2:#e6dcc9;
+  --cream-3:#d9cdb8;
+
+  --black:#151412;
+  --soft-black:#2a2722;
+
+  --red:#a62d27;
+  --deep-red:#6f2527;
+  --wine:#762e35;
+
+  --brown:#594b3d;
+
+  --line:rgba(25,20,16,.22);
 }
 
-html {
-  scroll-behavior: smooth;
+*{
+  box-sizing:border-box;
 }
 
-body {
-  margin: 0;
-  background: #eee7d8;
-  color: #171714;
-  font-family: Arial, Helvetica, sans-serif;
-  overflow-x: hidden;
+html{
+  scroll-behavior:smooth;
 }
 
-/* paper texture */
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--black);
+  font-family:Arial,Helvetica,sans-serif;
+  overflow-x:hidden;
+}
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 999;
-  opacity: 0.12;
+
+/* PAPER GRAIN */
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+  opacity:.12;
 
   background-image:
-    radial-gradient(#4c463d 0.6px, transparent 0.6px);
+    radial-gradient(rgba(40,30,20,.8) .45px,transparent .45px);
 
-  background-size: 6px 6px;
+  background-size:5px 5px;
 }
 
 
-/* =========================
-   TOP BAR
-========================= */
+/* =========================================================
+   MINI NAV
+========================================================= */
 
-.topbar {
-  height: 46px;
+.nav{
+  height:50px;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 
-  padding: 0 28px;
+  padding:0 28px;
 
-  border-bottom: 1px solid #777064;
+  border-bottom:1px solid var(--line);
 
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  position:relative;
+  z-index:30;
+
+  font-size:9px;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+}
+
+.nav-center{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+
+  font-family:Georgia,serif;
+  text-transform:none;
+  letter-spacing:.03em;
+  font-size:12px;
 }
 
 
-/* =========================
-   ENGLISH MOVING LOGO
-========================= */
+/* =========================================================
+   HERO
+========================================================= */
 
-.marquee {
-  overflow: hidden;
-  white-space: nowrap;
-
-  border-bottom: 1px solid #777064;
+.hero{
+  min-height:950px;
+  position:relative;
+  overflow:hidden;
 }
 
-.marquee-track {
-  display: flex;
-  width: max-content;
 
-  animation: moveEnglish 18s linear infinite;
+/* giant moving TOWWAH */
+
+.word-river{
+  position:absolute;
+
+  top:55px;
+  left:0;
+
+  width:100%;
+
+  overflow:hidden;
+  white-space:nowrap;
+
+  z-index:1;
 }
 
-.marquee-track span {
-  font-family: Georgia, "Times New Roman", serif;
+.word-track{
+  width:max-content;
+  display:flex;
 
-  font-size: clamp(105px, 16vw, 225px);
-  line-height: 0.78;
-
-  letter-spacing: -0.07em;
-
-  padding: 38px 42px 48px;
+  animation:moveTowwah 26s linear infinite;
 }
 
-@keyframes moveEnglish {
+.word-track span{
+  display:block;
 
-  from {
-    transform: translateX(0);
+  padding-right:70px;
+
+  font-family:Georgia,"Times New Roman",serif;
+
+  font-size:clamp(125px,19vw,270px);
+
+  line-height:.75;
+
+  letter-spacing:-.085em;
+}
+
+@keyframes moveTowwah{
+
+  from{
+    transform:translateX(0);
   }
 
-  to {
-    transform: translateX(-50%);
+  to{
+    transform:translateX(-50%);
   }
 
 }
 
 
-/* =========================
-   VISUAL COLLAGE
-========================= */
+/* =========================================================
+   HERO COLLAGE
+========================================================= */
 
-.collage {
-  position: relative;
+.hero-world{
+  position:relative;
+  z-index:5;
 
-  width: min(1300px, 100%);
-  height: 590px;
+  width:min(1280px,95%);
+  height:840px;
 
-  margin: auto;
+  margin:0 auto;
 }
 
 
-/* POSTCARD */
+/* MAIN PAPER PHOTO */
 
-.postcard {
-  position: absolute;
+.main-photo{
+  position:absolute;
 
-  width: 370px;
-  height: 235px;
+  top:230px;
+  left:12%;
 
-  left: 7%;
-  top: 90px;
+  width:300px;
 
-  padding: 25px;
+  background:#eee5d4;
 
-  background: #f6efe1;
+  padding:11px 11px 38px;
 
-  border: 1px solid #8b8272;
-
-  transform: rotate(-4deg);
+  transform:rotate(-4deg);
 
   box-shadow:
-    5px 8px 18px rgba(0,0,0,0.09);
+    0 24px 55px rgba(40,30,20,.14);
 }
 
-.postcard-label {
-  font-size: 9px;
-  letter-spacing: 0.17em;
-}
-
-.postcard h2 {
-  margin: 28px 0 25px;
-
-  font-family: Georgia, "Times New Roman", serif;
-
-  font-size: 43px;
-  line-height: 0.92;
-
-  font-weight: normal;
-}
-
-.postcard-line {
-  height: 1px;
-
-  background: #aaa08f;
-
-  margin-top: 13px;
-}
-
-.postcard-bottom {
-  margin-top: 17px;
-
-  font-size: 8px;
-  letter-spacing: 0.14em;
-}
-
-
-/* HANDWRITTEN NOTE */
-
-.hand-note {
-  position: absolute;
-
-  left: 38%;
-  top: 70px;
-
-  padding: 17px 22px;
-
-  background: #dcd0b4;
-
-  font-family: Georgia, "Times New Roman", serif;
-
-  font-size: 19px;
-  font-style: italic;
-
-  transform: rotate(4deg);
-
-  box-shadow:
-    3px 5px 10px rgba(0,0,0,0.06);
-}
-
-
-/* PORTRAIT */
-
-.portrait {
-  position: absolute;
-
-  right: 8%;
-  top: 55px;
-
-  width: 310px;
-
-  padding:
-    11px
-    11px
-    34px;
-
-  background: #f7efe1;
-
-  border: 1px solid #918777;
-
-  transform: rotate(5deg);
-
-  box-shadow:
-    7px 12px 20px rgba(0,0,0,0.12);
-}
-
-.portrait-image {
-  height: 300px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.photo-placeholder{
+  height:360px;
 
   background:
     linear-gradient(
       145deg,
-      #c4b9a4,
-      #71685a
+      #b8ac98,
+      #74695b
     );
 
-  color: #f1eadc;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-  font-family: Georgia, serif;
+  color:#ece3d4;
 
-  font-size: 27px;
+  font-family:Georgia,serif;
+
+  letter-spacing:.15em;
+  font-size:10px;
 }
 
-.portrait-caption {
-  padding-top: 12px;
+.main-photo p{
+  margin:12px 0 0;
 
-  font-size: 8px;
-  letter-spacing: 0.14em;
-}
-
-
-/* DOCUMENT STAMP */
-
-.stamp {
-  position: absolute;
-
-  right: 34%;
-  top: 180px;
-
-  width: 120px;
-  height: 120px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: 2px solid #596c55;
-  border-radius: 50%;
-
-  color: #596c55;
-
-  text-align: center;
-
-  font-size: 9px;
-  line-height: 1.6;
-  letter-spacing: 0.12em;
-
-  transform: rotate(-15deg);
+  font-size:8px;
+  letter-spacing:.14em;
 }
 
 
-/* =========================
-   FINJAN ILLUSTRATION
-========================= */
+/* torn visual diary paper */
 
-.finjan {
-  position: absolute;
+.diary-paper{
+  position:absolute;
 
-  left: 43%;
-  top: 330px;
+  top:215px;
+  left:43%;
 
-  width: 170px;
+  width:355px;
+  min-height:235px;
 
-  transform: rotate(-10deg);
+  padding:34px 34px 40px;
+
+  background:#f7f0e3;
+
+  transform:rotate(2.5deg);
+
+  box-shadow:
+    0 15px 40px rgba(40,30,20,.09);
+
+  clip-path:
+    polygon(
+      0 3%,
+      10% 0,
+      22% 2%,
+      33% 0,
+      45% 2%,
+      58% 0,
+      69% 2%,
+      81% 0,
+      92% 2%,
+      100% 0,
+      100% 96%,
+      90% 100%,
+      78% 97%,
+      67% 100%,
+      54% 97%,
+      40% 100%,
+      29% 97%,
+      15% 100%,
+      0 97%
+    );
 }
 
-.finjan svg {
-  width: 100%;
-  height: auto;
+.diary-paper small{
+  font-size:8px;
+  letter-spacing:.17em;
 }
 
+.diary-paper h1{
+  margin:35px 0 18px;
 
-/* little archive label */
+  font-family:Georgia,"Times New Roman",serif;
 
-.archive-label {
-  position: absolute;
+  font-size:44px;
+  font-weight:normal;
 
-  left: 12%;
-  bottom: 70px;
+  line-height:.88;
 
-  font-size: 9px;
-
-  letter-spacing: 0.16em;
-
-  transform: rotate(-2deg);
+  letter-spacing:-.04em;
 }
 
-.archive-label strong {
-  display: block;
+.diary-paper p{
+  margin:0;
 
-  margin-bottom: 7px;
+  width:82%;
 
-  font-family: Georgia, serif;
+  font-family:Georgia,serif;
 
-  font-size: 21px;
+  font-size:14px;
+  font-style:italic;
 
-  letter-spacing: 0;
-  font-weight: normal;
-}
-
-
-/* =========================
-   ARABIC MOVING LOGO
-========================= */
-
-.arabic-marquee {
-  overflow: hidden;
-  white-space: nowrap;
-
-  border-top: 1px solid #777064;
-  border-bottom: 1px solid #777064;
-}
-
-.arabic-track {
-  display: flex;
-
-  width: max-content;
-
-  animation: moveArabic 20s linear infinite;
-}
-
-.arabic-track span {
-  padding: 30px 50px 42px;
-
-  font-family: "Times New Roman", serif;
-
-  font-size: clamp(100px, 15vw, 215px);
-  line-height: 0.8;
-
-  direction: rtl;
-}
-
-@keyframes moveArabic {
-
-  from {
-    transform: translateX(-45%);
-  }
-
-  to {
-    transform: translateX(0);
-  }
-
+  line-height:1.5;
 }
 
 
-/* =========================
-   INTRO
-========================= */
+/* little Arabic note */
 
-.intro {
-  display: grid;
+.arabic-note{
+  position:absolute;
 
-  grid-template-columns:
-    1fr
-    1.5fr;
+  top:490px;
+  left:43%;
 
-  gap: 80px;
+  font-family:Georgia,"Times New Roman",serif;
 
-  padding:
-    100px
-    8%;
+  color:var(--deep-red);
 
-  border-bottom: 1px solid #777064;
-}
+  font-size:24px;
 
-.section-number {
-  font-size: 10px;
-  letter-spacing: 0.17em;
-}
+  direction:rtl;
 
-.intro-text {
-  max-width: 720px;
-}
-
-.intro-text h2 {
-  margin: 0 0 30px;
-
-  font-family: Georgia, "Times New Roman", serif;
-
-  font-size: clamp(42px, 6vw, 85px);
-  line-height: 0.95;
-
-  font-weight: normal;
-
-  letter-spacing: -0.04em;
-}
-
-.intro-text p {
-  max-width: 580px;
-
-  font-family: Georgia, serif;
-
-  font-size: 19px;
-  line-height: 1.6;
+  transform:rotate(-7deg);
 }
 
 
-/* =========================
-   TRY BE NEXT
-========================= */
+/* tiny date strip */
 
-.be-next {
-  display: grid;
+.date-strip{
+  position:absolute;
 
-  grid-template-columns:
-    1.2fr
-    1fr;
+  top:585px;
+  right:12%;
 
-  min-height: 520px;
+  border-top:1px solid var(--black);
+  border-bottom:1px solid var(--black);
 
-  border-bottom: 1px solid #777064;
-}
+  padding:8px 22px;
 
-.be-next-left {
-  padding: 80px 8%;
+  font-size:8px;
+  letter-spacing:.17em;
 
-  background: #243d59;
-
-  color: #eee7d8;
-}
-
-.be-next-left small {
-  font-size: 9px;
-  letter-spacing: 0.17em;
-}
-
-.be-next-left h2 {
-  margin:
-    60px
-    0
-    20px;
-
-  font-family: Georgia, serif;
-
-  font-weight: normal;
-
-  font-size: clamp(60px, 8vw, 120px);
-
-  line-height: 0.82;
-
-  letter-spacing: -0.06em;
-}
-
-.be-next-left p {
-  font-family: Georgia, serif;
-
-  font-size: 18px;
-
-  max-width: 440px;
-
-  line-height: 1.5;
-}
-
-.be-next-right {
-  padding: 80px 8%;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.be-next-right .arabic {
-  margin-bottom: 45px;
-
-  font-family: Georgia, serif;
-
-  font-size: 38px;
-
-  direction: rtl;
-  text-align: left;
-}
-
-.email-form {
-  display: flex;
-
-  border-bottom: 1px solid #171714;
-}
-
-.email-form input {
-  flex: 1;
-
-  padding:
-    18px
-    5px;
-
-  border: 0;
-  outline: none;
-
-  background: transparent;
-
-  font-family: Georgia, serif;
-
-  font-size: 18px;
-}
-
-.email-form button {
-  border: 0;
-
-  background: transparent;
-
-  cursor: pointer;
-
-  font-size: 11px;
-
-  letter-spacing: 0.14em;
+  transform:rotate(3deg);
 }
 
 
-/* =========================
-   VISUAL DIARY
-========================= */
+/* =========================================================
+   PEARLS
+========================================================= */
 
-.diary {
-  padding:
-    90px
-    6%;
+.pearls{
+  position:absolute;
 
-  border-bottom: 1px solid #777064;
+  right:4%;
+  top:245px;
+
+  width:290px;
+  height:260px;
+
+  transform:rotate(12deg);
 }
 
-.diary-heading {
-  display: flex;
+.pearl{
+  position:absolute;
 
-  justify-content: space-between;
-  align-items: flex-end;
+  width:38px;
+  height:38px;
 
-  margin-bottom: 60px;
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle at 32% 25%,
+      #fffdf6 0,
+      #f1e7d6 38%,
+      #cfc0a7 72%,
+      #a7967e 100%
+    );
+
+  box-shadow:
+    inset -4px -5px 7px rgba(110,88,62,.12),
+    4px 6px 10px rgba(58,45,35,.13);
 }
 
-.diary-heading h2 {
-  margin: 0;
+.pearl::after{
+  content:"";
 
-  font-family: Georgia, serif;
+  position:absolute;
 
-  font-weight: normal;
+  width:6px;
+  height:6px;
 
-  font-size: clamp(55px, 9vw, 130px);
+  border-radius:50%;
 
-  line-height: 0.8;
+  background:rgba(95,78,60,.30);
 
-  letter-spacing: -0.06em;
-}
+  left:50%;
+  top:50%;
 
-.diary-heading span {
-  font-size: 9px;
-
-  letter-spacing: 0.16em;
-}
-
-.diary-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, 1fr);
-
-  gap: 25px;
-}
-
-.diary-card {
-  border-top: 1px solid #777064;
-
-  padding-top: 12px;
-}
-
-.diary-photo {
-  height: 420px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: #c6bdad;
-
-  font-family: Georgia, serif;
-
-  color: #eee7d8;
-
-  font-size: 20px;
-}
-
-.diary-card:nth-child(2)
-.diary-photo {
-  background: #7e766a;
-}
-
-.diary-card:nth-child(3)
-.diary-photo {
-  background: #a99e8d;
-}
-
-.diary-card h3 {
-  margin:
-    15px
-    0
-    6px;
-
-  font-family: Georgia, serif;
-
-  font-size: 27px;
-
-  font-weight: normal;
-}
-
-.diary-card p {
-  margin: 0;
-
-  font-size: 9px;
-
-  letter-spacing: 0.12em;
+  transform:translate(-50%,-50%);
 }
 
 
-/* =========================
-   FILMS
-========================= */
+/* curving pearl layout */
 
-.films {
-  padding:
-    90px
-    6%;
+.p1{left:20px;top:105px;}
+.p2{left:55px;top:82px;}
+.p3{left:93px;top:66px;}
+.p4{left:134px;top:63px;}
+.p5{left:175px;top:75px;}
+.p6{left:209px;top:99px;}
+.p7{left:232px;top:132px;}
+.p8{left:238px;top:172px;}
+.p9{left:220px;top:207px;}
+.p10{left:186px;top:227px;}
 
-  background: #181817;
+.pearl-label{
+  position:absolute;
 
-  color: #eee7d8;
+  right:4%;
+  top:490px;
+
+  width:220px;
+
+  font-family:Georgia,serif;
+  font-style:italic;
+
+  font-size:13px;
+
+  line-height:1.45;
 }
 
-.films-top {
-  display: flex;
 
-  justify-content: space-between;
+/* =========================================================
+   SAUDI FINJAN STILL LIFE
+========================================================= */
 
-  margin-bottom: 50px;
+.finjan-scene{
+  position:absolute;
+
+  left:2%;
+  bottom:8px;
+
+  width:370px;
+  height:220px;
+
+  transform:rotate(-4deg);
 }
 
-.films h2 {
-  margin: 0;
 
-  font-family: Georgia, serif;
+/* shadow */
 
-  font-size: clamp(60px, 10vw, 145px);
+.table-shadow{
+  position:absolute;
 
-  font-weight: normal;
+  left:45px;
+  bottom:28px;
 
-  letter-spacing: -0.07em;
+  width:265px;
+  height:50px;
 
-  line-height: 0.8;
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(65,45,30,.20),
+      transparent 70%
+    );
 }
 
-.film-box {
-  min-height: 500px;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* finjan 1 */
 
-  border: 1px solid #777064;
+.finjan{
+  position:absolute;
+
+  width:112px;
+  height:62px;
 
   background:
     linear-gradient(
-      135deg,
-      #373532,
-      #111
+      to bottom,
+      #fbf5e9 0,
+      #eee2cf 70%,
+      #d1c0a8 100%
     );
-
-  font-family: Georgia, serif;
-
-  font-size: 24px;
-}
-
-.film-caption {
-  display: flex;
-
-  justify-content: space-between;
-
-  padding-top: 15px;
-
-  font-size: 9px;
-
-  letter-spacing: 0.14em;
-}
-
-
-/* =========================
-   EDITOR NOTE
-========================= */
-
-.editor-note {
-  display: grid;
-
-  grid-template-columns:
-    1fr
-    2fr;
-
-  gap: 70px;
-
-  padding:
-    100px
-    8%;
-
-  border-bottom: 1px solid #777064;
-}
-
-.editor-note h2 {
-  margin: 0;
-
-  font-family: Georgia, serif;
-
-  font-size: 60px;
-
-  font-weight: normal;
-
-  line-height: 0.95;
-}
-
-.editor-copy {
-  max-width: 680px;
-
-  font-family: Georgia, serif;
-
-  font-size: 21px;
-
-  line-height: 1.65;
-}
-
-.editor-copy a {
-  display: inline-block;
-
-  margin-top: 30px;
-
-  color: inherit;
-
-  font-family: Arial, sans-serif;
-
-  font-size: 9px;
-
-  letter-spacing: 0.16em;
-
-  text-decoration: none;
-
-  border-bottom: 1px solid;
-}
-
-
-/* =========================
-   TIME CAPSULE
-========================= */
-
-.capsule {
-  padding:
-    100px
-    8%;
-
-  background: #752d32;
-
-  color: #f1e9db;
-}
-
-.capsule small {
-  font-size: 9px;
-
-  letter-spacing: 0.17em;
-}
-
-.capsule h2 {
-  max-width: 900px;
-
-  margin:
-    45px
-    0
-    55px;
-
-  font-family: Georgia, serif;
-
-  font-size: clamp(55px, 8vw, 115px);
-
-  font-weight: normal;
-
-  line-height: 0.9;
-
-  letter-spacing: -0.05em;
-}
-
-.capsule textarea {
-  width: 100%;
-  min-height: 180px;
-
-  padding: 25px;
-
-  resize: vertical;
 
   border:
     1px solid
-    rgba(241,233,219,0.7);
+    rgba(72,58,43,.34);
 
-  outline: none;
+  border-radius:
+    13px
+    13px
+    48px
+    48px;
 
-  background: transparent;
-
-  color: #f1e9db;
-
-  font-family: Georgia, serif;
-
-  font-size: 20px;
+  box-shadow:
+    0 13px 18px rgba(50,36,25,.12);
 }
 
-.capsule textarea::placeholder {
+.finjan::before{
+  content:"";
+
+  position:absolute;
+
+  top:-7px;
+  left:8px;
+  right:8px;
+
+  height:18px;
+
+  border:
+    1px solid
+    rgba(60,48,36,.28);
+
+  border-radius:50%;
+
+  background:#dfbe78;
+}
+
+
+/* decorative Saudi-inspired bands */
+
+.finjan::after{
+  content:"";
+
+  position:absolute;
+
+  left:15px;
+  right:15px;
+  top:28px;
+
+  height:8px;
+
+  border-top:2px solid var(--deep-red);
+  border-bottom:1px solid var(--deep-red);
+}
+
+.cup1{
+  left:35px;
+  top:105px;
+
+  transform:rotate(-10deg);
+}
+
+.cup2{
+  left:135px;
+  top:60px;
+
+  transform:rotate(7deg);
+}
+
+.cup3{
+  left:235px;
+  top:112px;
+
+  transform:rotate(13deg);
+}
+
+
+/* extra details */
+
+.cup2::after{
+  border-color:#8c6537;
+}
+
+.cup3::after{
+  border-color:var(--wine);
+}
+
+.finjan-caption{
+  position:absolute;
+
+  left:92px;
+  bottom:-5px;
+
+  font-size:8px;
+  letter-spacing:.15em;
+}
+
+
+/* =========================================================
+   ARABIC WORD RIVER
+========================================================= */
+
+.arabic-river{
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+
+  overflow:hidden;
+  white-space:nowrap;
+
+  background:#ece3d3;
+}
+
+.arabic-track{
+  display:flex;
+
+  width:max-content;
+
+  animation:moveArabic 24s linear infinite;
+}
+
+.arabic-track span{
+  display:block;
+
+  padding:27px 55px 40px;
+
+  font-family:"Times New Roman",Georgia,serif;
+
+  font-size:clamp(90px,14vw,195px);
+
+  line-height:.78;
+
+  direction:rtl;
+}
+
+@keyframes moveArabic{
+
+  from{
+    transform:translateX(-45%);
+  }
+
+  to{
+    transform:translateX(0);
+  }
+
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.intro{
+  padding:100px 8% 115px;
+
+  display:grid;
+
+  grid-template-columns:
+    .65fr
+    1.5fr;
+
+  gap:80px;
+
+  border-bottom:1px solid var(--line);
+}
+
+.micro{
+  font-size:8px;
+
+  letter-spacing:.17em;
+  line-height:1.8;
+
+  text-transform:uppercase;
+}
+
+.intro h2{
+  margin:0 0 28px;
+
+  font-family:Georgia,serif;
+
+  font-size:clamp(45px,6vw,86px);
+
+  font-weight:normal;
+
+  line-height:.9;
+
+  letter-spacing:-.045em;
+}
+
+.intro p{
+  max-width:570px;
+
+  font-family:Georgia,serif;
+
+  font-size:18px;
+
+  line-height:1.65;
+}
+
+
+/* =========================================================
+   EMAIL INVITATION
+========================================================= */
+
+.invite-section{
+  min-height:820px;
+
+  background:#a72d28;
+
+  position:relative;
+
+  overflow:hidden;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:100px 30px;
+
+  border-bottom:1px solid rgba(0,0,0,.3);
+}
+
+
+/* scratches / texture */
+
+.invite-section::before{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  opacity:.14;
+
+  background:
+    repeating-linear-gradient(
+      11deg,
+      transparent 0 35px,
+      rgba(255,255,255,.18) 36px,
+      transparent 37px
+    );
+}
+
+
+/* whole envelope object */
+
+.envelope-wrap{
+  width:min(610px,92vw);
+  height:530px;
+
+  position:relative;
+
+  z-index:3;
+}
+
+
+/* back envelope */
+
+.envelope-back{
+  position:absolute;
+
+  left:0;
+  right:0;
+
+  bottom:0;
+
+  height:325px;
+
+  background:#e8dfc9;
+
+  border:1px solid rgba(50,40,25,.18);
+
+  box-shadow:
+    0 28px 60px rgba(44,18,14,.24);
+}
+
+
+/* rear flap */
+
+.envelope-back::before{
+  content:"";
+
+  position:absolute;
+
+  top:-175px;
+  left:72px;
+
+  width:465px;
+  height:270px;
+
+  background:#eee6d1;
+
+  border:1px solid rgba(50,40,25,.16);
+
+  clip-path:
+    polygon(
+      0 100%,
+      50% 0,
+      100% 100%
+    );
+}
+
+
+/* invitation card */
+
+.invitation-card{
+  position:absolute;
+
+  left:50%;
+
+  transform:translateX(-50%);
+
+  top:0;
+
+  width:78%;
+  min-height:385px;
+
+  padding:45px 48px;
+
+  background:#f1ead7;
+
+  border:
+    1px solid
+    rgba(50,40,25,.16);
+
+  box-shadow:
+    0 10px 25px rgba(45,25,15,.10);
+
+  z-index:3;
+}
+
+.invitation-card h3{
+  margin:0 0 38px;
+
+  font-family:Arial,Helvetica,sans-serif;
+
+  font-size:21px;
+
+  letter-spacing:-.04em;
+}
+
+.invitation-card p{
+  margin:0;
+
+  max-width:330px;
+
+  font-family:Georgia,serif;
+
+  font-size:16px;
+
+  line-height:1.45;
+}
+
+
+/* playful Arabic */
+
+.invitation-ar{
+  margin-top:28px;
+
+  font-family:Georgia,serif;
+
+  color:var(--deep-red);
+
+  font-size:21px;
+
+  direction:rtl;
+
+  text-align:left;
+}
+
+
+/* email inside card */
+
+.email-form{
+  margin-top:36px;
+
+  display:flex;
+  align-items:center;
+
+  border-bottom:1px solid var(--black);
+}
+
+.email-form input{
+  flex:1;
+
+  border:0;
+  outline:0;
+
+  background:transparent;
+
+  padding:12px 0;
+
+  color:var(--black);
+
+  font-family:Georgia,serif;
+
+  font-size:16px;
+}
+
+.email-form input::placeholder{
+  color:#6c665a;
+}
+
+.email-form button{
+  border:0;
+  background:transparent;
+
+  cursor:pointer;
+
+  padding:12px 3px 12px 15px;
+
+  font-size:9px;
+  letter-spacing:.13em;
+}
+
+
+/* front envelope */
+
+.envelope-front{
+  position:absolute;
+
+  left:0;
+  right:0;
+
+  bottom:0;
+
+  height:270px;
+
+  background:#e3dac6;
+
+  z-index:5;
+
+  clip-path:
+    polygon(
+      0 0,
+      50% 47%,
+      100% 0,
+      100% 100%,
+      0 100%
+    );
+
+  border:
+    1px solid
+    rgba(50,40,25,.16);
+
+  pointer-events:none;
+}
+
+
+/* Towwah branding on front */
+
+.envelope-logo{
+  position:absolute;
+
+  z-index:7;
+
+  bottom:70px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  text-align:center;
+
+  font-family:Georgia,serif;
+
+  font-size:43px;
+
+  line-height:.78;
+
+  letter-spacing:-.06em;
+
+  pointer-events:none;
+}
+
+.envelope-logo small{
+  display:block;
+
+  margin-top:14px;
+
+  font-family:Arial,sans-serif;
+
+  font-size:7px;
+
+  letter-spacing:.18em;
+}
+
+
+/* =========================================================
+   VISUAL DIARY
+========================================================= */
+
+.visual-diary{
+  padding:120px 5% 150px;
+
+  background:#f4eee2;
+
+  overflow:hidden;
+}
+
+.diary-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+
+  margin-bottom:90px;
+}
+
+.diary-head h2{
+  margin:0;
+
+  font-family:Georgia,serif;
+
+  font-size:clamp(70px,11vw,160px);
+
+  font-weight:normal;
+
+  line-height:.7;
+
+  letter-spacing:-.075em;
+}
+
+.diary-grid{
+  display:grid;
+
+  grid-template-columns:
+    1.05fr
+    .72fr
+    1fr;
+
+  gap:50px;
+
+  align-items:start;
+}
+
+.story{
+  position:relative;
+}
+
+.story:nth-child(2){
+  margin-top:130px;
+}
+
+.story-photo{
+  width:100%;
+  aspect-ratio:4 / 5;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    linear-gradient(
+      145deg,
+      #82776a,
+      #c6b8a3
+    );
+
+  color:#eee6da;
+
+  font-family:Georgia,serif;
+
+  font-size:11px;
+  letter-spacing:.16em;
+
+  box-shadow:
+    0 14px 35px rgba(40,30,20,.09);
+}
+
+.story:nth-child(2) .story-photo{
+  transform:rotate(2deg);
+}
+
+.story:nth-child(3) .story-photo{
+  transform:rotate(-1.5deg);
+}
+
+.story small{
+  display:block;
+
+  margin-top:16px;
+
+  font-size:8px;
+  letter-spacing:.16em;
+}
+
+.story h3{
+  margin:7px 0;
+
+  font-family:Georgia,serif;
+
+  font-size:28px;
+
+  font-weight:normal;
+}
+
+.story p{
+  max-width:320px;
+
+  font-family:Georgia,serif;
+
+  font-size:14px;
+
+  line-height:1.5;
+}
+
+
+/* floating line */
+
+.diary-scribble{
+  margin:100px 0 0 33%;
+
+  color:var(--wine);
+
+  font-family:Georgia,serif;
+
+  font-style:italic;
+
+  font-size:22px;
+
+  transform:rotate(-3deg);
+}
+
+
+/* =========================================================
+   FILMS
+========================================================= */
+
+.films{
+  padding:110px 6% 130px;
+
+  background:#181715;
+
+  color:var(--cream);
+}
+
+.films-top{
+  display:flex;
+
+  align-items:flex-start;
+  justify-content:space-between;
+
+  margin-bottom:75px;
+}
+
+.films h2{
+  margin:0;
+
+  font-family:Georgia,serif;
+
+  font-size:clamp(80px,13vw,180px);
+
+  font-weight:normal;
+
+  letter-spacing:-.08em;
+
+  line-height:.7;
+}
+
+.film{
+  min-height:570px;
+
+  border:
+    1px solid
+    rgba(244,235,218,.30);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    radial-gradient(
+      circle at 55% 30%,
+      #4c453c,
+      #181715 65%
+    );
+
+  position:relative;
+}
+
+.play{
+  width:105px;
+  height:105px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.55);
+
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-family:Georgia,serif;
+}
+
+.film-info{
+  display:flex;
+  justify-content:space-between;
+
+  padding-top:15px;
+
+  font-size:8px;
+  letter-spacing:.17em;
+}
+
+
+/* =========================================================
+   EDITOR NOTES
+========================================================= */
+
+.notes{
+  padding:115px 8%;
+
+  display:grid;
+
+  grid-template-columns:
+    .8fr
+    1.25fr;
+
+  gap:100px;
+
+  border-bottom:1px solid var(--line);
+}
+
+.notes h2{
+  margin:0;
+
+  font-family:Georgia,serif;
+
+  font-size:clamp(52px,7vw,95px);
+
+  font-weight:normal;
+
+  line-height:.88;
+
+  letter-spacing:-.05em;
+}
+
+.note-sheet{
+  background:#e2d7c4;
+
+  padding:55px;
+
+  transform:rotate(1deg);
+
+  box-shadow:
+    0 16px 35px rgba(40,30,20,.08);
+}
+
+.note-sheet small{
+  font-size:8px;
+  letter-spacing:.17em;
+}
+
+.note-sheet p{
+  margin:34px 0;
+
+  font-family:Georgia,serif;
+
+  font-size:19px;
+
+  line-height:1.65;
+}
+
+.note-sheet a{
+  color:inherit;
+
+  text-decoration:none;
+
+  font-size:8px;
+  letter-spacing:.16em;
+
+  border-bottom:1px solid;
+}
+
+
+/* =========================================================
+   LEAVE SOMETHING
+========================================================= */
+
+.leave{
+  min-height:700px;
+
+  padding:115px 8%;
+
+  background:var(--deep-red);
+
+  color:#f3eadb;
+}
+
+.leave small{
+  font-size:8px;
+  letter-spacing:.17em;
+}
+
+.leave h2{
+  max-width:950px;
+
+  margin:55px 0;
+
+  font-family:Georgia,serif;
+
+  font-size:clamp(58px,9vw,125px);
+
+  font-weight:normal;
+
+  line-height:.84;
+
+  letter-spacing:-.06em;
+}
+
+.leave textarea{
+  width:100%;
+  min-height:170px;
+
+  background:transparent;
+
+  border:0;
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.65);
+
+  outline:0;
+
+  resize:vertical;
+
+  color:#f3eadb;
+
+  font-family:Georgia,serif;
+
+  font-size:20px;
+
+  padding:20px 0;
+}
+
+.leave textarea::placeholder{
   color:
-    rgba(241,233,219,0.55);
+    rgba(243,234,219,.55);
 }
 
-.capsule-bottom {
-  display: flex;
+.leave-meta{
+  display:flex;
+  justify-content:space-between;
 
-  justify-content: space-between;
+  margin-top:18px;
 
-  margin-top: 15px;
-
-  font-size: 9px;
-
-  letter-spacing: 0.13em;
+  font-size:8px;
+  letter-spacing:.15em;
 }
 
 
-/* =========================
+/* =========================================================
    FOOTER
-========================= */
+========================================================= */
 
-footer {
-  display: flex;
+footer{
+  padding:60px 6% 50px;
 
-  justify-content: space-between;
-  align-items: flex-end;
+  display:flex;
 
-  padding:
-    50px
-    6%;
-
-  background: #eee7d8;
+  justify-content:space-between;
+  align-items:flex-end;
 }
 
-.footer-logo {
-  font-family: Georgia, serif;
+.footer-logo{
+  font-family:Georgia,serif;
 
-  font-size: clamp(65px, 12vw, 160px);
+  font-size:clamp(80px,14vw,190px);
 
-  letter-spacing: -0.07em;
+  letter-spacing:-.08em;
 
-  line-height: 0.75;
+  line-height:.7;
 }
 
-.footer-small {
-  text-align: right;
+.footer-right{
+  text-align:right;
 
-  font-size: 9px;
+  font-size:8px;
 
-  line-height: 1.8;
+  letter-spacing:.15em;
 
-  letter-spacing: 0.13em;
+  line-height:1.9;
 }
 
 
-/* =========================
+/* =========================================================
+   LITTLE MOTION
+========================================================= */
+
+.main-photo,
+.diary-paper,
+.pearls,
+.finjan-scene,
+.postcard{
+  transition:
+    transform .5s ease;
+}
+
+.main-photo:hover{
+  transform:
+    rotate(-2deg)
+    translateY(-7px);
+}
+
+.diary-paper:hover{
+  transform:
+    rotate(1deg)
+    translateY(-6px);
+}
+
+.pearls:hover{
+  transform:
+    rotate(8deg)
+    translateY(-5px);
+}
+
+.finjan-scene:hover{
+  transform:
+    rotate(-2deg)
+    translateY(-6px);
+}
+
+
+/* =========================================================
    MOBILE
-========================= */
+========================================================= */
 
-@media (max-width: 800px) {
+@media(max-width:800px){
 
-  .topbar {
-    padding:
-      0
-      15px;
+  .nav{
+    padding:0 14px;
   }
 
-  .collage {
-    height: 720px;
+  .nav-center{
+    display:none;
   }
 
-  .postcard {
-    width: 75%;
-
-    left: 5%;
-    top: 70px;
+  .hero{
+    min-height:1100px;
   }
 
-  .hand-note {
-    left: 48%;
-    top: 280px;
+  .hero-world{
+    height:1000px;
   }
 
-  .portrait {
-    width: 64%;
+  .main-photo{
+    width:66%;
 
-    right: 5%;
-    top: 350px;
+    left:4%;
+    top:230px;
   }
 
-  .portrait-image {
-    height: 260px;
+  .photo-placeholder{
+    height:320px;
   }
 
-  .stamp {
-    right: 3%;
-    top: 150px;
+  .diary-paper{
+    width:70%;
 
-    width: 95px;
-    height: 95px;
+    left:25%;
+    top:565px;
   }
 
-  .finjan {
-    left: 4%;
-    top: 480px;
-
-    width: 125px;
+  .arabic-note{
+    top:830px;
+    left:8%;
   }
 
-  .archive-label {
-    display: none;
+  .pearls{
+    width:220px;
+
+    transform:scale(.75) rotate(10deg);
+
+    transform-origin:top right;
+
+    right:-10px;
+    top:200px;
+  }
+
+  .pearl-label{
+    display:none;
+  }
+
+  .date-strip{
+    display:none;
+  }
+
+  .finjan-scene{
+    bottom:0;
+    left:-20px;
+
+    transform:scale(.77) rotate(-4deg);
+
+    transform-origin:left bottom;
   }
 
   .intro,
-  .be-next,
-  .editor-note {
-    grid-template-columns: 1fr;
+  .notes{
+    grid-template-columns:1fr;
 
-    gap: 40px;
-  }
+    gap:40px;
 
-  .intro {
     padding:
-      70px
+      80px
       7%;
   }
 
-  .be-next-left,
-  .be-next-right {
+  .invite-section{
+    min-height:720px;
+
     padding:
-      65px
-      7%;
+      80px
+      16px;
   }
 
-  .diary-grid {
-    grid-template-columns: 1fr;
+  .envelope-wrap{
+    height:520px;
   }
 
-  .diary-photo {
-    height: 480px;
-  }
+  .invitation-card{
+    width:84%;
 
-  .films {
     padding:
+      35px
+      28px;
+  }
+
+  .envelope-back::before{
+    left:10%;
+
+    width:80%;
+  }
+
+  .diary-grid{
+    grid-template-columns:1fr;
+
+    gap:80px;
+  }
+
+  .story:nth-child(2){
+    margin-top:0;
+  }
+
+  .diary-scribble{
+    margin:
       70px
+      0
+      0
       5%;
   }
 
-  .film-box {
-    min-height: 320px;
+  .film{
+    min-height:340px;
   }
 
-  .editor-note {
-    padding:
-      70px
-      7%;
+  footer{
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:40px;
   }
 
-  .capsule {
-    padding:
-      70px
-      7%;
-  }
-
-  footer {
-    flex-direction: column;
-
-    align-items: flex-start;
-
-    gap: 35px;
-  }
-
-  .footer-small {
-    text-align: left;
+  .footer-right{
+    text-align:left;
   }
 
 }
@@ -1025,163 +1555,155 @@ footer {
 <body>
 
 
-<!-- TOP -->
+<!-- =========================
+     NAV
+========================= -->
 
-<header class="topbar">
-
-  <span>TOWWAH / تَوّه</span>
+<header class="nav">
 
   <span>
-    INDEPENDENT JOURNAL · 2026
+    TOWWAH
+  </span>
+
+  <span class="nav-center">
+    people, while they're still becoming
+  </span>
+
+  <span>
+    تَوّه
   </span>
 
 </header>
 
 
-<!-- MOVING ENGLISH LOGO -->
+<!-- =========================
+     HERO
+========================= -->
 
-<section class="marquee">
-
-  <div class="marquee-track">
-
-    <span>TOWWAH</span>
-    <span>TOWWAH</span>
-    <span>TOWWAH</span>
-    <span>TOWWAH</span>
-
-    <span>TOWWAH</span>
-    <span>TOWWAH</span>
-    <span>TOWWAH</span>
-    <span>TOWWAH</span>
-
-  </div>
-
-</section>
+<section class="hero">
 
 
-<!-- COLLAGE -->
+  <div class="word-river">
 
-<section class="collage">
+    <div class="word-track">
 
+      <span>TOWWAH</span>
+      <span>TOWWAH</span>
+      <span>TOWWAH</span>
+      <span>TOWWAH</span>
 
-  <div class="postcard">
+      <span>TOWWAH</span>
+      <span>TOWWAH</span>
+      <span>TOWWAH</span>
+      <span>TOWWAH</span>
 
-    <div class="postcard-label">
-      DOCUMENT / NO. 001
-    </div>
-
-    <h2>
-      STILL<br>
-      BECOMING.
-    </h2>
-
-    <div class="postcard-line"></div>
-    <div class="postcard-line"></div>
-
-    <div class="postcard-bottom">
-      SAUDI ARABIA → WHEREVER NEXT
     </div>
 
   </div>
 
 
-  <div class="hand-note">
-    جيت وهو توّه…
-  </div>
+  <div class="hero-world">
 
 
-  <div class="portrait">
+    <!-- portrait -->
 
-    <div class="portrait-image">
-      PORTRAIT
+    <div class="main-photo">
+
+      <div class="photo-placeholder">
+        PORTRAIT / 001
+      </div>
+
+      <p>
+        SOMEWHERE BETWEEN NOW + NEXT
+      </p>
+
     </div>
 
-    <div class="portrait-caption">
+
+    <!-- visual diary paper -->
+
+    <div class="diary-paper">
+
+      <small>
+        A VISUAL DIARY / 2026
+      </small>
+
+      <h1>
+        caught<br>
+        somewhere<br>
+        in-between.
+      </h1>
+
+      <p>
+        not after it worked out.
+        not once the story makes sense.
+        now.
+      </p>
+
+    </div>
+
+
+    <div class="arabic-note">
+      جيت وهو توّه…
+    </div>
+
+
+    <!-- pearls -->
+
+    <div class="pearls">
+
+      <div class="pearl p1"></div>
+      <div class="pearl p2"></div>
+      <div class="pearl p3"></div>
+      <div class="pearl p4"></div>
+      <div class="pearl p5"></div>
+      <div class="pearl p6"></div>
+      <div class="pearl p7"></div>
+      <div class="pearl p8"></div>
+      <div class="pearl p9"></div>
+      <div class="pearl p10"></div>
+
+    </div>
+
+
+    <div class="pearl-label">
+      little things we carry
+      while everything else is changing.
+    </div>
+
+
+    <!-- Saudi finjan composition -->
+
+    <div class="finjan-scene">
+
+      <div class="table-shadow"></div>
+
+      <div class="finjan cup1"></div>
+      <div class="finjan cup2"></div>
+      <div class="finjan cup3"></div>
+
+      <div class="finjan-caption">
+        قهوة / BEFORE THE STORY HAS AN ENDING
+      </div>
+
+    </div>
+
+
+    <div class="date-strip">
       LAST DOCUMENTED — SEPTEMBER 2026
     </div>
 
-  </div>
-
-
-  <div class="stamp">
-
-    TOWWAH<br>
-    DOCUMENTED<br>
-    WHILE<br>
-    STILL OPEN
 
   </div>
-
-
-  <div class="finjan">
-
-    <svg
-      viewBox="0 0 220 180"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-
-      <path
-        d="
-        M35 55
-        C60 72 145 72 170 55
-        L153 120
-        C135 143 70 143 51 120
-        Z
-        "
-        stroke="#263e58"
-        stroke-width="5"
-      />
-
-      <path
-        d="
-        M170 70
-        C205 63 205 113 159 110
-        "
-        stroke="#263e58"
-        stroke-width="5"
-      />
-
-      <path
-        d="
-        M52 83
-        C82 103 123 103 153 83
-        "
-        stroke="#263e58"
-        stroke-width="3"
-      />
-
-      <path
-        d="
-        M61 101
-        C87 117 118 117 143 101
-        "
-        stroke="#263e58"
-        stroke-width="3"
-      />
-
-    </svg>
-
-  </div>
-
-
-  <div class="archive-label">
-
-    <strong>
-      THE THING FROM HOME
-    </strong>
-
-    OBJECT 001 / FINJAN
-
-  </div>
-
 
 </section>
 
 
-<!-- MOVING ARABIC LOGO -->
+<!-- =========================
+     ARABIC RIVER
+========================= -->
 
-<section class="arabic-marquee">
+<section class="arabic-river">
 
   <div class="arabic-track">
 
@@ -1200,25 +1722,30 @@ footer {
 </section>
 
 
-<!-- INTRO -->
+<!-- =========================
+     ABOUT
+========================= -->
 
 <section class="intro">
 
-  <div class="section-number">
-    01 / WHAT IS TOWWAH?
+  <div class="micro">
+    01<br>
+    ABOUT TOWWAH
   </div>
 
-  <div class="intro-text">
+
+  <div>
 
     <h2>
-      People,<br>
-      before the ending.
+      Before we know<br>
+      how it ends.
     </h2>
 
     <p>
-      TOWWAH documents people while their stories
-      are still open — before we know what worked,
-      what changed, or who they eventually became.
+      TOWWAH meets people while something is
+      still changing — while the decision is still
+      open, the dream is still awkward, and the
+      next version of them hasn't arrived yet.
     </p>
 
   </div>
@@ -1226,64 +1753,81 @@ footer {
 </section>
 
 
-<!-- TRY BE NEXT -->
+<!-- =========================
+     INVITATION
+========================= -->
 
-<section class="be-next">
-
-  <div class="be-next-left">
-
-    <small>
-      OPEN CALL / ARCHIVE
-    </small>
-
-    <h2>
-      TRY<br>
-      BEING<br>
-      NEXT.
-    </h2>
-
-    <p>
-      You don't need to have figured it out.
-      That's kind of the point.
-    </p>
-
-  </div>
+<section class="invite-section">
 
 
-  <div class="be-next-right">
+  <div class="envelope-wrap">
 
-    <div class="arabic">
-      أوه، جرّب تكون التالي.
+
+    <div class="envelope-back"></div>
+
+
+    <div class="invitation-card">
+
+      <h3>
+        YOU'RE INVITED
+      </h3>
+
+
+      <p>
+        Oh — maybe you're next.
+        Leave your email and tell us where
+        you are in your story right now.
+      </p>
+
+
+      <div class="invitation-ar">
+        يمكن نجيك وأنت توّك.
+      </div>
+
+
+      <div class="email-form">
+
+        <input
+          type="email"
+          placeholder="your@email.com"
+        >
+
+        <button type="button">
+          SEND →
+        </button>
+
+      </div>
+
     </div>
 
-    <p>
-      Leave your email. Tell us where you are
-      in your story right now.
-    </p>
 
-    <div class="email-form">
+    <div class="envelope-front"></div>
 
-      <input
-        type="email"
-        placeholder="YOUR EMAIL"
-      >
 
-      <button>
-        I'M HERE →
-      </button>
+    <div class="envelope-logo">
+
+      towwah
+
+      <small>
+        AN OPEN INVITATION
+      </small>
 
     </div>
+
 
   </div>
 
 </section>
 
 
-<!-- VISUAL DIARY -->
+<!-- =========================
+     VISUAL DIARY
+========================= -->
 
-<section class="diary">
+<section class="visual-diary">
 
-  <div class="diary-heading">
+
+  <div class="diary-head">
 
     <h2>
       THE<br>
@@ -1291,9 +1835,10 @@ footer {
       DIARY
     </h2>
 
-    <span>
-      PEOPLE / ARCHIVE / 2026
-    </span>
+    <div class="micro">
+      PEOPLE<br>
+      IN PROGRESS
+    </div>
 
   </div>
 
@@ -1301,52 +1846,64 @@ footer {
   <div class="diary-grid">
 
 
-    <article class="diary-card">
+    <article class="story">
 
-      <div class="diary-photo">
-        PORTRAIT 001
+      <div class="story-photo">
+        IMAGE / 001
       </div>
 
-      <h3>
-        Name goes here
-      </h3>
-
-      <p>
+      <small>
         LAST DOCUMENTED — 09.2026
-      </p>
-
-    </article>
-
-
-    <article class="diary-card">
-
-      <div class="diary-photo">
-        PORTRAIT 002
-      </div>
+      </small>
 
       <h3>
         Name goes here
       </h3>
 
       <p>
-        STILL IN PROGRESS
+        One sentence about what is still unresolved.
       </p>
 
     </article>
 
 
-    <article class="diary-card">
+    <article class="story">
 
-      <div class="diary-photo">
-        PORTRAIT 003
+      <div class="story-photo">
+        IMAGE / 002
       </div>
+
+      <small>
+        STILL OPEN
+      </small>
 
       <h3>
         Name goes here
       </h3>
 
       <p>
+        A life that doesn't have to make sense yet.
+      </p>
+
+    </article>
+
+
+    <article class="story">
+
+      <div class="story-photo">
+        IMAGE / 003
+      </div>
+
+      <small>
         WE'LL ASK AGAIN
+      </small>
+
+      <h3>
+        Name goes here
+      </h3>
+
+      <p>
+        This isn't where the story ends.
       </p>
 
     </article>
@@ -1354,12 +1911,21 @@ footer {
 
   </div>
 
+
+  <div class="diary-scribble">
+    we'll come back.
+  </div>
+
+
 </section>
 
 
-<!-- FILMS -->
+<!-- =========================
+     FILMS
+========================= -->
 
 <section class="films">
+
 
   <div class="films-top">
 
@@ -1367,24 +1933,27 @@ footer {
       FILMS
     </h2>
 
-    <span>
-      02 / MOVING ARCHIVE
-    </span>
+    <div class="micro">
+      MOVING<br>
+      DIARY / 02
+    </div>
 
   </div>
 
 
-  <div class="film-box">
+  <div class="film">
 
-    FILM / INTERVIEW / CLIP
+    <div class="play">
+      PLAY
+    </div>
 
   </div>
 
 
-  <div class="film-caption">
+  <div class="film-info">
 
     <span>
-      TOWWAH FILM 001
+      TOWWAH FILM / 001
     </span>
 
     <span>
@@ -1393,39 +1962,42 @@ footer {
 
   </div>
 
+
 </section>
 
 
-<!-- EDITOR NOTE -->
+<!-- =========================
+     NOTES
+========================= -->
 
-<section class="editor-note">
+<section class="notes">
+
 
   <div>
 
-    <span class="section-number">
-      03 / FROM THE EDITOR
-    </span>
+    <div class="micro">
+      03 / NOTES
+    </div>
 
     <h2>
-      Notes from<br>
-      somewhere<br>
-      in-between.
+      Things I noticed
+      along the way.
     </h2>
 
   </div>
 
 
-  <div class="editor-copy">
+  <div class="note-sheet">
+
+    <small>
+      FROM THE EDITOR
+    </small>
 
     <p>
-      A place for observations, unfinished thoughts,
-      field notes, and the things that don't quite
-      belong inside an interview.
-    </p>
-
-    <p>
-      Not everything needs an ending before it is
-      worth documenting.
+      A place for the pieces that don't belong
+      inside an interview — observations,
+      unfinished thoughts, field notes,
+      conversations, and things worth remembering.
     </p>
 
     <a href="#">
@@ -1434,31 +2006,37 @@ footer {
 
   </div>
 
+
 </section>
 
 
-<!-- TIME CAPSULE -->
+<!-- =========================
+     TIME CAPSULE
+========================= -->
 
-<section class="capsule">
+<section class="leave">
+
 
   <small>
-    DOCUMENT YOURSELF / 04
+    04 / LEAVE SOMETHING HERE
   </small>
 
+
   <h2>
-    Leave something
-    for your future self.
+    What feels unfinished
+    right now?
   </h2>
 
+
   <textarea
-    placeholder="What feels unfinished right now?"
+    placeholder="write something your future self might want to find again..."
   ></textarea>
 
 
-  <div class="capsule-bottom">
+  <div class="leave-meta">
 
     <span>
-      WRITTEN IN 2026
+      WRITTEN NOW
     </span>
 
     <span>
@@ -1467,26 +2045,30 @@ footer {
 
   </div>
 
+
 </section>
 
 
-<!-- FOOTER -->
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
+
 
   <div class="footer-logo">
     TOWWAH
   </div>
 
-  <div class="footer-small">
+
+  <div class="footer-right">
 
     تَوّه<br>
-
     PEOPLE STILL BECOMING<br>
-
-    © 2026
+    EST. 2026
 
   </div>
+
 
 </footer>
 
