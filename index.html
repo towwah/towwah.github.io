@@ -6,21 +6,25 @@
 
 <title>TOWWAH — تَوّه</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@300;400&family=Noto+Naskh+Arabic:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
 
 :root{
-  --paper:#f3eee5;
-  --paper-light:#faf6ee;
-  --paper-dark:#ddd2c0;
+  --paper:#f2eee6;
+  --paper-light:#faf7f0;
+  --paper-dark:#ded5c6;
 
   --ink:#171512;
-  --soft:#655e54;
+  --soft:#716a61;
 
-  --espresso:#332a23;
-  --rust:#8a4036;
-  --olive:#777561;
+  --brown:#41372e;
+  --red:#7d302e;
 
-  --line:rgba(23,21,18,.18);
+  --line:rgba(23,21,18,.17);
 }
 
 *{
@@ -36,30 +40,25 @@ body{
   background:var(--paper);
   color:var(--ink);
   overflow-x:hidden;
-  font-family:"Helvetica Neue",Arial,sans-serif;
+  font-family:"IBM Plex Mono",monospace;
 }
-
-
-/* subtle paper texture */
 
 body::after{
   content:"";
   position:fixed;
   inset:0;
-  z-index:9999;
   pointer-events:none;
-
-  opacity:.08;
-
+  z-index:9999;
+  opacity:.055;
   background-image:
-    radial-gradient(
-      rgba(40,32,24,.8) .45px,
-      transparent .45px
-    );
-
+    radial-gradient(rgba(30,24,18,.8) .45px,transparent .45px);
   background-size:5px 5px;
 }
 
+img{
+  display:block;
+  width:100%;
+}
 
 button,
 input,
@@ -69,34 +68,30 @@ select{
 }
 
 
-/* =========================================================
+/* ==================================================
    NAV
-========================================================= */
+================================================== */
 
 nav{
   position:absolute;
   top:0;
   left:0;
   right:0;
-
-  z-index:20;
-
-  height:60px;
+  z-index:50;
 
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
 
-  padding:0 4%;
+  padding:26px 4%;
 
   font-size:9px;
-
-  letter-spacing:.19em;
+  letter-spacing:.17em;
 }
 
 .nav-links{
   display:flex;
-  gap:30px;
+  gap:27px;
 }
 
 nav a{
@@ -105,88 +100,113 @@ nav a{
 }
 
 
-/* =========================================================
-   01 — OPENING
-========================================================= */
+/* ==================================================
+   01 — TYPEWRITER OPENING
+================================================== */
 
 .hero{
-  height:100vh;
-  min-height:760px;
+  min-height:100vh;
+  height:920px;
 
   position:relative;
+  overflow:hidden;
 
   display:flex;
   justify-content:center;
   align-items:flex-end;
 
-  overflow:hidden;
-
-  background:
-    linear-gradient(
-      to bottom,
-      #f7f3eb,
-      #eee7dc
-    );
+  background:#f5f1e9;
 }
 
 
-/* tiny side copy */
+/*
+  REAL TYPEWRITER IMAGE
 
-.hero-side{
+  Upload an image named:
+  typewriter.png
+
+  Transparent-background PNG is best.
+*/
+
+.typewriter-image{
   position:absolute;
 
-  left:4%;
-  top:37%;
-
-  font-size:8px;
-  line-height:1.7;
-  letter-spacing:.19em;
-}
-
-
-/* typewriter composition */
-
-.typewriter-scene{
-  width:min(850px,90vw);
-  height:740px;
-
-  position:relative;
-}
-
-
-/* paper */
-
-.type-paper{
-  width:min(490px,72vw);
-  height:520px;
-
-  position:absolute;
+  width:min(790px,85vw);
 
   left:50%;
-  bottom:170px;
+  bottom:-55px;
 
   transform:translateX(-50%);
 
-  z-index:3;
+  z-index:4;
 
-  background:var(--paper-light);
-
-  padding:38px 42px;
-
-  box-shadow:
-    0 18px 45px rgba(42,32,24,.12);
-
-  animation:paperEnter 2s
-    cubic-bezier(.22,.8,.25,1)
-    both;
+  filter:
+    saturate(.72)
+    contrast(.93);
 }
 
-@keyframes paperEnter{
 
-  from{
-    transform:
-      translate(-50%,165px);
-  }
+/* fallback if the image is not uploaded */
+
+.typewriter-fallback{
+  position:absolute;
+
+  left:50%;
+  bottom:15px;
+
+  transform:translateX(-50%);
+
+  width:620px;
+  height:230px;
+
+  border-radius:35px 35px 10px 10px;
+
+  background:#9b947a;
+
+  opacity:.22;
+
+  z-index:1;
+}
+
+
+/* PAPER COMES OUT */
+
+.hero-paper{
+  position:absolute;
+
+  width:min(455px,72vw);
+  height:525px;
+
+  bottom:180px;
+  left:50%;
+
+  padding:35px 42px;
+
+  z-index:3;
+
+  background:
+    linear-gradient(
+      100deg,
+      #faf7f0,
+      #f3eee4
+    );
+
+  box-shadow:
+    0 16px 45px
+    rgba(37,28,20,.11);
+
+  transform:
+    translate(-50%,170px);
+
+  animation:
+    paperUp
+    2.3s
+    cubic-bezier(.2,.8,.2,1)
+    .3s
+    forwards;
+}
+
+@keyframes paperUp{
 
   to{
     transform:
@@ -196,338 +216,230 @@ nav a{
 }
 
 
-/* top metadata */
-
-.paper-meta{
+.paper-top{
   display:flex;
   justify-content:space-between;
 
-  padding-bottom:9px;
-
   border-bottom:
     1px solid
-    rgba(20,20,20,.45);
+    rgba(20,18,15,.5);
 
-  font-family:"Courier New",monospace;
+  padding-bottom:8px;
 
-  font-size:9px;
+  font-size:8px;
 }
 
 
-/* arabic */
+.hero-ar{
+  margin-top:88px;
 
-.paper-arabic{
-  margin-top:82px;
+  font-family:"Noto Naskh Arabic",serif;
 
   text-align:center;
-
   direction:rtl;
 
-  font-family:
-    "Times New Roman",
-    serif;
+  font-size:
+    clamp(31px,4vw,46px);
 
-  font-size:42px;
-
-  color:var(--rust);
+  color:var(--red);
 
   opacity:0;
 
   animation:
-    fadeText .5s ease
-    2.2s forwards;
+    fadeIn
+    .7s
+    2.7s
+    forwards;
 }
 
-@keyframes fadeText{
+@keyframes fadeIn{
   to{opacity:1;}
 }
 
 
-/* english type */
-
-.paper-english{
+.hero-en{
   width:0;
+
+  margin:
+    25px
+    auto
+    0;
 
   overflow:hidden;
 
   white-space:nowrap;
 
-  margin:
-    34px
-    auto
-    0;
-
-  font-family:
-    "Courier New",
-    monospace;
-
-  font-size:32px;
-
   text-align:center;
 
+  font-size:27px;
+  letter-spacing:.04em;
+
   animation:
-    typeLogo 1.5s
+    typeWord
+    1.6s
     steps(6,end)
-    3s forwards;
+    3.5s
+    forwards;
 }
 
-@keyframes typeLogo{
+@keyframes typeWord{
+  to{width:145px;}
+}
+
+
+.hero-underline{
+  width:0;
+  height:2px;
+
+  margin:
+    12px
+    auto;
+
+  background:var(--red);
+
+  transform:rotate(-1deg);
+
+  animation:
+    underline
+    .6s
+    ease
+    5.3s
+    forwards;
+}
+
+@keyframes underline{
   to{width:165px;}
 }
 
 
-/* underline */
-
-.paper-line{
-  width:0;
-  height:2px;
-
-  margin:12px auto;
-
-  background:var(--rust);
-
-  transform:rotate(-1.5deg);
-
-  animation:
-    underline .65s ease
-    4.8s forwards;
-}
-
-@keyframes underline{
-  to{width:185px;}
-}
-
-
-.paper-bottom{
+.hero-paper-note{
   position:absolute;
 
-  bottom:35px;
-  left:38px;
+  bottom:32px;
+  left:35px;
 
-  font-family:
-    "Courier New",
-    monospace;
-
-  font-size:9px;
-
+  font-size:8px;
   color:var(--soft);
 }
 
 
-/* =========================================
-   TYPEWRITER — cleaner, less cartoonish
-========================================= */
-
-.typewriter{
+.side-note{
   position:absolute;
 
-  left:50%;
-  bottom:-8px;
+  left:4%;
+  top:42%;
 
-  transform:
-    translateX(-50%);
-
-  width:610px;
-  height:245px;
-
-  z-index:5;
+  font-size:8px;
+  line-height:1.8;
+  letter-spacing:.15em;
 }
 
 
-.machine-bar{
-  position:absolute;
-
-  left:60px;
-  right:60px;
-  top:5px;
-
-  height:23px;
-
-  background:#49463f;
-
-  border-radius:12px;
-}
-
-
-.machine-body{
-  position:absolute;
-
-  left:40px;
-  right:40px;
-  bottom:0;
-
-  height:190px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #aaa282,
-      #898367
-    );
-
-  border-radius:
-    35px
-    35px
-    10px
-    10px;
-
-  clip-path:
-    polygon(
-      8% 0,
-      92% 0,
-      100% 100%,
-      0 100%
-    );
-
-  box-shadow:
-    0 20px 35px
-    rgba(30,25,20,.18);
-}
-
-
-.machine-inner{
-  position:absolute;
-
-  left:110px;
-  right:110px;
-  top:75px;
-
-  height:45px;
-
-  background:#302f2b;
-
-  border-radius:8px;
-}
-
-
-.keys{
-  position:absolute;
-
-  left:115px;
-  right:115px;
-  bottom:33px;
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(10,1fr);
-
-  gap:7px;
-
-  z-index:6;
-}
-
-
-.key{
-  height:18px;
-
-  border-radius:50%;
-
-  background:#ded7c3;
-
-  border:
-    1px solid
-    rgba(0,0,0,.18);
-}
-
-
-.scroll{
+.scroll-note{
   position:absolute;
 
   right:4%;
-  bottom:30px;
+  bottom:35px;
+
+  font-size:8px;
+  letter-spacing:.16em;
+}
+
+
+/* ==================================================
+   02 — FOUNDER
+================================================== */
+
+.founder{
+  min-height:100vh;
+
+  padding:
+    120px
+    7%
+    150px;
+
+  background:#eee9df;
+}
+
+
+.kicker{
+  width:min(1100px,100%);
+  margin:
+    0
+    auto
+    60px;
 
   font-size:8px;
   letter-spacing:.18em;
 }
 
 
-/* =========================================================
-   02 — FOUNDER
-========================================================= */
-
-.founder{
-  min-height:100vh;
-
-  padding:
-    110px
-    7%
-    130px;
-
-  position:relative;
-}
-
-
-.section-label{
-  font-size:8px;
-  letter-spacing:.2em;
-
-  margin-bottom:65px;
-}
-
-
-.founder-layout{
-  width:min(1100px,100%);
+.founder-content{
+  width:min(1080px,100%);
 
   margin:auto;
 
   display:grid;
 
   grid-template-columns:
-    .9fr
+    .85fr
     1fr;
 
-  gap:90px;
+  gap:100px;
 
   align-items:center;
 }
 
 
-/* closed book */
+/* BOOK */
 
 .book{
   position:relative;
 
-  width:100%;
-  max-width:500px;
+  width:420px;
+  max-width:100%;
 
-  aspect-ratio:4/5;
+  aspect-ratio:4 / 5;
 
-  perspective:1500px;
+  margin:auto;
+
+  perspective:1700px;
 
   cursor:pointer;
 }
 
 
-.book-inside{
+.book-pages{
   position:absolute;
   inset:0;
 
   display:grid;
+  grid-template-columns:1fr 1fr;
 
-  grid-template-columns:
-    1fr 1fr;
-
-  background:#f8f3e9;
+  background:#faf6ed;
 
   box-shadow:
     0 24px 60px
-    rgba(45,35,25,.13);
+    rgba(40,31,23,.11);
 }
 
 
-.page{
-  padding:45px 30px;
+.book-page{
+  padding:38px 28px;
 
-  font-family:Georgia,serif;
+  font-family:
+    "Cormorant Garamond",
+    serif;
 
-  font-size:13px;
-  line-height:1.6;
+  font-size:17px;
+  line-height:1.5;
 }
 
 
-.page:first-child{
-  border-right:1px solid var(--line);
+.book-page:first-child{
+  border-right:
+    1px solid
+    var(--line);
 }
 
 
@@ -535,222 +447,199 @@ nav a{
   position:absolute;
   inset:0;
 
-  z-index:4;
+  z-index:5;
+
+  padding:38px;
+
+  color:#f5efe5;
 
   background:
     linear-gradient(
-      145deg,
-      #40362d,
-      #2d261f
+      135deg,
+      #4a4036,
+      #302922
     );
 
-  color:#f5efe4;
-
-  padding:48px;
-
   box-shadow:
-    0 24px 60px
-    rgba(35,25,18,.21);
+    0 23px 55px
+    rgba(38,29,22,.18);
 
   transform-origin:left center;
 
   transition:
-    transform 1.1s
-    cubic-bezier(.18,.72,.18,1);
+    transform
+    1.15s
+    cubic-bezier(.18,.75,.18,1);
 }
 
 
 .book.open .book-cover{
-  transform:rotateY(-115deg);
+  transform:
+    rotateY(-115deg);
 }
 
 
 .book-cover small{
-  font-size:8px;
-  letter-spacing:.18em;
+  font-size:7px;
+  letter-spacing:.17em;
 }
 
 
 .book-title{
   position:absolute;
 
-  left:48px;
-  right:30px;
+  top:45%;
+  left:38px;
 
-  top:41%;
-
-  transform:
-    translateY(-50%);
+  transform:translateY(-50%);
 
   font-family:
-    Georgia,
-    "Times New Roman",
+    "Cormorant Garamond",
     serif;
 
-  font-size:
-    clamp(44px,5vw,72px);
-
-  line-height:.88;
-
-  letter-spacing:-.045em;
+  font-size:58px;
+  line-height:.77;
 }
 
 
-.book-open{
+.open-book{
   position:absolute;
 
-  right:38px;
-  bottom:38px;
+  bottom:35px;
+  right:35px;
 
-  font-family:Georgia,serif;
+  font-family:
+    "Cormorant Garamond",
+    serif;
 
   font-style:italic;
 
-  font-size:12px;
-}
-
-
-/* founder explanation */
-
-.founder-copy{
-  max-width:480px;
-}
-
-
-.founder-copy small{
-  font-size:8px;
-  letter-spacing:.18em;
+  font-size:15px;
 }
 
 
 .founder-copy h2{
   margin:
-    27px
+    20px
     0
-    30px;
+    28px;
 
   font-family:
-    Georgia,
+    "Cormorant Garamond",
     serif;
 
-  font-weight:normal;
+  font-weight:400;
 
   font-size:
-    clamp(42px,5vw,68px);
+    clamp(48px,6vw,78px);
 
-  line-height:.93;
-
-  letter-spacing:-.035em;
+  line-height:.88;
 }
 
 
 .founder-copy p{
-  font-family:Georgia,serif;
+  max-width:460px;
 
-  font-size:17px;
+  font-family:
+    "Cormorant Garamond",
+    serif;
 
-  line-height:1.7;
-
-  color:#37332e;
+  font-size:20px;
+  line-height:1.5;
 }
 
 
-.handwriting{
+.founder-hand{
   margin-top:35px;
 
-  color:var(--rust);
+  color:var(--red);
 
-  font-family:Georgia,serif;
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size:19px;
 
   font-style:italic;
-
-  font-size:18px;
 
   transform:rotate(-2deg);
 }
 
 
-/* =========================================================
+/* ==================================================
    03 — VISUAL DIARY
-========================================================= */
+================================================== */
 
-.visual-diary{
+.diary{
   min-height:100vh;
 
   padding:
-    115px
-    6%
+    125px
+    5%
     150px;
 
-  background:#eee6da;
+  background:#f7f3eb;
 
   overflow:hidden;
 }
 
 
-.diary-heading{
-  width:min(1150px,100%);
+.diary-title{
+  width:min(1120px,100%);
 
   margin:
-    0
     auto
-    95px;
+    auto
+    85px;
 
-  display:grid;
+  display:flex;
 
-  grid-template-columns:
-    .7fr
-    1fr;
+  justify-content:
+    space-between;
 
-  gap:80px;
-
-  align-items:end;
+  align-items:flex-end;
 }
 
 
-.diary-heading h2{
+.diary-title h2{
   margin:0;
 
   font-family:
-    Georgia,
+    "Cormorant Garamond",
     serif;
 
+  font-weight:400;
+
   font-size:
-    clamp(62px,9vw,125px);
+    clamp(65px,9vw,128px);
 
-  font-weight:normal;
-
-  line-height:.72;
-
-  letter-spacing:-.06em;
+  line-height:.7;
 }
 
 
-.diary-heading p{
-  max-width:360px;
+.diary-title p{
+  width:300px;
 
-  font-family:Georgia,serif;
+  font-family:
+    "Cormorant Garamond",
+    serif;
 
-  font-size:15px;
-
-  line-height:1.65;
+  font-size:17px;
+  line-height:1.4;
 }
 
 
-/* stacked photos */
+/* STACKED LIKE YOUR REFERENCE */
 
-.photo-stack{
-  width:min(880px,90vw);
+.stack{
+  position:relative;
 
-  height:800px;
+  width:min(760px,90vw);
+  height:780px;
 
   margin:auto;
-
-  position:relative;
 }
 
-
-/* each photo */
 
 .memory{
   position:absolute;
@@ -760,14 +649,15 @@ nav a{
     10px
     34px;
 
-  background:#f7f2e8;
+  background:#f9f5ed;
 
   box-shadow:
-    0 18px 40px
-    rgba(46,35,27,.13);
+    0 16px 35px
+    rgba(35,27,20,.12);
 
   transition:
-    transform .45s ease;
+    transform
+    .4s ease;
 }
 
 
@@ -775,422 +665,466 @@ nav a{
   z-index:20;
 
   transform:
-    translateY(-12px)
+    translateY(-9px)
     rotate(0deg)!important;
 }
 
 
-/* clips */
-
-.clip{
-  position:absolute;
-
-  top:-28px;
-  left:50%;
-
-  transform:
-    translateX(-50%);
-
-  width:26px;
-  height:72px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #b8aa8b,
-      #d6c8a7,
-      #a79578
-    );
-
-  border-radius:2px;
-
-  box-shadow:
-    0 3px 7px
-    rgba(30,20,15,.14);
-
-  z-index:5;
+.memory img{
+  height:100%;
+  object-fit:cover;
+  filter:
+    saturate(.78)
+    contrast(.93);
 }
 
 
-.photo{
-  width:100%;
+/* image fallback */
+
+.fake-photo{
   height:100%;
 
-  min-height:300px;
-
-  background:
-    linear-gradient(
-      140deg,
-      #a79b8b,
-      #625d55
-    );
+  min-height:270px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  color:#eee8dd;
+  background:
+    linear-gradient(
+      140deg,
+      #aaa093,
+      #6b665f
+    );
 
-  font-family:
-    "Courier New",
-    monospace;
+  color:#f3ede4;
 
-  font-size:9px;
-
-  letter-spacing:.16em;
+  font-size:8px;
+  letter-spacing:.15em;
 }
 
 
-/* stacked positions */
+/* THE CLIPS */
 
-.memory.one{
-  width:390px;
+.binder{
+  position:absolute;
 
-  left:5%;
-  top:130px;
+  left:50%;
+  top:-24px;
 
-  transform:rotate(-6deg);
+  transform:
+    translateX(-50%);
+
+  width:58px;
+  height:39px;
+
+  z-index:5;
+
+  background:
+    linear-gradient(
+      90deg,
+      #55514c,
+      #aaa59c,
+      #4d4944
+    );
+
+  border-radius:4px 4px 2px 2px;
+
+  box-shadow:
+    0 3px 5px
+    rgba(0,0,0,.16);
+}
+
+.binder::before,
+.binder::after{
+  content:"";
+
+  position:absolute;
+
+  width:19px;
+  height:28px;
+
+  top:-21px;
+
+  border:
+    2px solid
+    #69645e;
+
+  border-bottom:0;
+
+  border-radius:
+    10px
+    10px
+    0
+    0;
+}
+
+.binder::before{
+  left:7px;
+}
+
+.binder::after{
+  right:7px;
 }
 
 
-.memory.two{
-  width:370px;
+/* ONE BEHIND ANOTHER */
 
-  left:31%;
+.memory.m1{
+  width:360px;
+  height:460px;
+
+  left:0;
+  top:170px;
+
+  transform:rotate(-8deg);
+}
+
+.memory.m2{
+  width:380px;
+  height:490px;
+
+  left:155px;
   top:35px;
 
   transform:rotate(2deg);
+
+  z-index:3;
 }
 
+.memory.m3{
+  width:340px;
+  height:430px;
 
-.memory.three{
-  width:330px;
-
-  right:1%;
-  top:170px;
+  right:0;
+  top:205px;
 
   transform:rotate(7deg);
+
+  z-index:2;
+}
+
+.memory.m4{
+  width:315px;
+  height:390px;
+
+  left:215px;
+  top:365px;
+
+  transform:rotate(-3deg);
+
+  z-index:7;
 }
 
 
-.memory.four{
-  width:350px;
-
-  left:14%;
-  top:430px;
-
-  transform:rotate(3deg);
-}
-
-
-.memory.five{
-  width:390px;
-
-  right:10%;
-  top:480px;
-
-  transform:rotate(-4deg);
-}
-
-
-.diary-note{
+.stack-writing{
   position:absolute;
 
-  left:-3%;
-  top:20px;
+  left:-120px;
+  top:70px;
 
-  color:var(--rust);
+  width:220px;
+
+  color:var(--red);
 
   font-family:
-    Georgia,
+    "Cormorant Garamond",
     serif;
 
-  font-size:20px;
-
+  font-size:21px;
   font-style:italic;
 
   transform:rotate(-8deg);
 }
 
 
-.diary-caption{
-  position:absolute;
+.stack-writing::after{
+  content:"↘";
 
-  right:-2%;
-  bottom:25px;
+  display:block;
 
-  width:230px;
+  margin:
+    5px
+    0
+    0
+    70px;
 
-  font-family:Georgia,serif;
-
-  font-size:14px;
-
-  line-height:1.5;
+  font-size:35px;
 }
 
 
-/* =========================================================
-   04 — FUTURE MESSAGE
-========================================================= */
+/* ==================================================
+   04 — FUTURE LETTER
+================================================== */
 
 .future{
   padding:
     120px
     6%
-    140px;
+    150px;
 
-  background:#f6f1e8;
+  background:#eee8dd;
 }
 
 
-.future-heading{
-  width:min(1080px,100%);
+.future-title{
+  width:min(1050px,100%);
 
   margin:
     0
     auto
-    75px;
-
-  display:grid;
-
-  grid-template-columns:
-    1fr
-    .8fr;
-
-  gap:80px;
-
-  align-items:end;
-}
-
-
-.future-heading h2{
-  margin:0;
-
-  font-family:
-    Georgia,
-    serif;
-
-  font-size:
-    clamp(55px,8vw,115px);
-
-  font-weight:normal;
-
-  line-height:.82;
-
-  letter-spacing:-.055em;
-}
-
-
-.future-heading p{
-  font-family:Georgia,serif;
-
-  font-size:16px;
-
-  line-height:1.6;
-}
-
-
-/* REAL PHOTO PLACEHOLDER — no fake hands */
-
-.coffee-photo{
-  width:min(1080px,100%);
-
-  height:500px;
-
-  margin:auto;
-
-  position:relative;
-
-  overflow:hidden;
-
-  background:
-    linear-gradient(
-      135deg,
-      #d0c2ad,
-      #9d8872
-    );
-
-  box-shadow:
-    0 18px 45px
-    rgba(45,35,25,.09);
-}
-
-
-/*
-Upload a real photo to GitHub named:
-coffee-hands.jpg
-
-Then this will appear automatically.
-*/
-
-.coffee-photo img{
-  width:100%;
-  height:100%;
-
-  object-fit:cover;
-
-  display:block;
-}
-
-
-.coffee-placeholder{
-  position:absolute;
-  inset:0;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
+    70px;
 
   text-align:center;
-
-  color:#f7f1e6;
-
-  font-size:9px;
-  line-height:1.8;
-  letter-spacing:.18em;
 }
 
 
-.coffee-photo:has(img[src]){
-  background:#b9aa96;
-}
-
-
-.coffee-question{
-  position:absolute;
-
-  left:50%;
-  bottom:35px;
-
-  transform:
-    translateX(-50%);
-
-  width:max-content;
-  max-width:85%;
-
-  color:#fff9ee;
-
-  font-family:Georgia,serif;
-
-  direction:rtl;
-
-  text-align:center;
-
-  font-size:
-    clamp(18px,2vw,27px);
-
-  text-shadow:
-    0 2px 12px
-    rgba(0,0,0,.35);
-}
-
-
-/* letter */
-
-.future-letter{
-  width:min(760px,92vw);
-
-  margin:
-    -45px
-    auto
-    0;
-
-  position:relative;
-
-  z-index:4;
-
-  padding:
-    55px
-    60px;
-
-  background:var(--paper-light);
-
-  box-shadow:
-    0 22px 50px
-    rgba(45,35,25,.12);
-
-  transform:rotate(-.8deg);
-}
-
-
-.future-letter small{
+.future-title small{
   font-size:8px;
   letter-spacing:.18em;
 }
 
 
-.future-letter textarea{
+.future-title h2{
+  max-width:850px;
+
+  margin:
+    22px
+    auto
+    15px;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size:
+    clamp(60px,9vw,120px);
+
+  font-weight:400;
+
+  line-height:.78;
+}
+
+
+.future-title p{
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size:18px;
+}
+
+
+/*
+REAL PHOTO:
+Upload coffee.jpg
+*/
+
+.coffee-scene{
+  width:min(960px,100%);
+  height:520px;
+
+  margin:auto;
+
+  position:relative;
+
+  background:#cfc3b2;
+
+  overflow:hidden;
+
+  box-shadow:
+    0 15px 35px
+    rgba(42,31,23,.08);
+}
+
+
+.coffee-scene img{
   width:100%;
+  height:100%;
 
-  min-height:150px;
+  object-fit:cover;
 
-  border:0;
+  filter:
+    saturate(.82)
+    contrast(.94);
+}
 
-  border-bottom:
-    1px solid
-    var(--ink);
 
-  background:transparent;
+.photo-missing{
+  position:absolute;
+  inset:0;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  text-align:center;
+
+  font-size:8px;
+  line-height:1.8;
+  letter-spacing:.14em;
+
+  color:white;
+}
+
+
+.coffee-ar{
+  position:absolute;
+
+  left:50%;
+  top:46%;
+
+  width:80%;
+
+  transform:
+    translate(-50%,-50%);
+
+  z-index:3;
+
+  color:white;
+
+  text-align:center;
+  direction:rtl;
+
+  font-family:
+    "Noto Naskh Arabic",
+    serif;
+
+  font-size:
+    clamp(24px,3vw,38px);
+
+  text-shadow:
+    0 2px 15px
+    rgba(0,0,0,.35);
+}
+
+
+/* FUTURE LETTER */
+
+.future-paper{
+  width:min(700px,88vw);
+
+  margin:
+    -65px
+    auto
+    0;
+
+  position:relative;
+
+  z-index:5;
+
+  padding:
+    50px
+    55px;
+
+  background:#faf6ed;
+
+  box-shadow:
+    0 18px 45px
+    rgba(40,30,22,.11);
+
+  transform:rotate(-.7deg);
+}
+
+
+.future-paper small{
+  font-size:8px;
+  letter-spacing:.17em;
+}
+
+
+.future-paper textarea{
+  width:100%;
+  min-height:145px;
+
+  margin-top:15px;
+
+  padding:
+    17px
+    0;
 
   resize:none;
 
-  outline:0;
+  outline:none;
 
-  padding:
-    25px
-    0;
-
-  font-family:Georgia,serif;
-
-  font-size:19px;
-
-  line-height:1.65;
-}
-
-
-.delivery{
-  margin-top:32px;
-
-  display:grid;
-
-  grid-template-columns:
-    1fr
-    auto;
-
-  gap:20px;
-}
-
-
-.delivery select{
   border:0;
 
   border-bottom:
     1px solid
     var(--ink);
 
+  background:transparent;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size:20px;
+}
+
+
+.future-bottom{
+  display:flex;
+
+  align-items:end;
+
+  gap:25px;
+
+  margin-top:30px;
+}
+
+
+.year-area{
+  flex:1;
+}
+
+
+.year-area label{
+  display:block;
+
+  margin-bottom:8px;
+
+  font-size:7px;
+  letter-spacing:.16em;
+}
+
+
+.year-area select{
+  width:100%;
+
   padding:
-    13px
+    12px
     0;
+
+  border:0;
+
+  border-bottom:
+    1px solid
+    var(--ink);
 
   outline:0;
 
   background:transparent;
 
-  font-family:Georgia,serif;
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size:18px;
 }
 
 
-.delivery button{
-  width:52px;
-  height:52px;
+.seal-letter{
+  width:50px;
+  height:50px;
 
   border:0;
 
   border-radius:50%;
 
-  background:var(--espresso);
+  color:#fff;
 
-  color:white;
+  background:var(--brown);
 
   cursor:pointer;
 
@@ -1198,195 +1132,206 @@ Then this will appear automatically.
 }
 
 
-.year-note{
+.future-response{
   margin-top:18px;
 
-  color:var(--rust);
+  color:var(--red);
 
-  font-family:Georgia,serif;
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size:16px;
 
   font-style:italic;
-
-  font-size:13px;
 }
 
 
-/* =========================================================
+/* ==================================================
    05 — NOTES
-========================================================= */
+================================================== */
 
 .notes{
   padding:
-    115px
+    120px
     6%
-    130px;
+    150px;
 
-  background:#eae1d4;
+  background:#f7f3eb;
 }
 
 
-.notes-layout{
-  width:min(1150px,100%);
-
+.notes-inner{
+  width:min(1120px,100%);
   margin:auto;
 }
 
 
-.notes-head{
+.notes-top{
   display:flex;
 
-  justify-content:space-between;
-  align-items:flex-end;
+  justify-content:
+    space-between;
 
-  margin-bottom:65px;
+  align-items:end;
+
+  margin-bottom:60px;
 }
 
 
-.notes-head h2{
+.notes-top h2{
   margin:0;
 
-  font-family:Georgia,serif;
+  font-family:
+    "Cormorant Garamond",
+    serif;
 
   font-size:
-    clamp(64px,8vw,110px);
+    clamp(65px,8vw,115px);
 
-  font-weight:normal;
+  font-weight:400;
 
-  line-height:.8;
-
-  letter-spacing:-.055em;
+  line-height:.7;
 }
 
 
-.article-row{
+.notes-grid{
   display:grid;
 
   grid-template-columns:
-    repeat(3,1fr);
+    1.1fr
+    .8fr
+    .95fr;
 
-  gap:25px;
+  gap:23px;
 }
 
 
-.article{
-  background:#f5eee3;
+.note-card{
+  background:#eee7dc;
 
   padding:
-    10px
-    10px
+    9px
+    9px
     28px;
-
-  box-shadow:
-    0 12px 25px
-    rgba(40,30,22,.08);
 }
 
 
-.article-photo{
-  height:250px;
+.note-image{
+  height:270px;
 
   background:
     linear-gradient(
-      145deg,
-      #afa18e,
-      #6f685e
+      140deg,
+      #aaa092,
+      #625e58
     );
 }
 
 
-.article h3{
+.note-card:nth-child(2){
+  margin-top:65px;
+}
+
+
+.note-card h3{
   margin:
-    20px
+    19px
     8px
     7px;
 
-  font-family:Georgia,serif;
+  font-family:
+    "Cormorant Garamond",
+    serif;
 
-  font-size:23px;
+  font-size:27px;
+  font-weight:400;
 
-  font-weight:normal;
-
-  line-height:1.05;
+  line-height:1;
 }
 
 
-.article small{
+.note-card small{
   margin-left:8px;
 
   font-size:7px;
-
-  letter-spacing:.16em;
-
-  color:var(--soft);
+  letter-spacing:.15em;
 }
 
 
-/* =========================================================
-   06 — INVITATION
-========================================================= */
+/* ==================================================
+   06 — ENVELOPE
+================================================== */
 
-.invitation{
-  min-height:850px;
+.join{
+  min-height:900px;
+
+  position:relative;
 
   padding:
-    110px
-    5%;
+    120px
+    6%;
+
+  background:#ede7dc;
 
   display:flex;
-
-  align-items:center;
   justify-content:center;
-
-  background:#f5efe6;
+  align-items:center;
 }
 
 
-.invite-layout{
-  width:min(1100px,100%);
+.join-inner{
+  width:min(950px,100%);
 
   display:grid;
 
   grid-template-columns:
-    .7fr
-    1.3fr;
+    .65fr
+    1.2fr;
 
-  gap:80px;
+  gap:75px;
 
   align-items:center;
 }
 
 
-.invite-copy h2{
-  margin:20px 0;
+.join-text h2{
+  margin:
+    20px
+    0;
 
-  font-family:Georgia,serif;
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-weight:400;
 
   font-size:
-    clamp(55px,7vw,100px);
+    clamp(55px,7vw,95px);
 
-  font-weight:normal;
-
-  line-height:.82;
-
-  letter-spacing:-.05em;
+  line-height:.78;
 }
 
 
-.invite-copy p{
-  max-width:300px;
+.join-text p{
+  max-width:260px;
 
-  font-family:Georgia,serif;
+  font-family:
+    "Cormorant Garamond",
+    serif;
 
-  line-height:1.6;
+  font-size:18px;
+  line-height:1.4;
 }
 
 
 /* envelope */
 
 .envelope{
-  height:510px;
-
   position:relative;
+
+  width:100%;
+  height:470px;
 
   cursor:pointer;
 }
@@ -1395,104 +1340,134 @@ Then this will appear automatically.
 .envelope-back{
   position:absolute;
 
-  left:5%;
-  right:5%;
+  left:0;
+  right:0;
+
   bottom:30px;
 
-  height:325px;
+  height:300px;
 
-  background:#ded3c1;
+  background:#ddd2bf;
 
   box-shadow:
-    0 22px 45px
-    rgba(45,35,25,.13);
+    0 20px 45px
+    rgba(40,30,22,.12);
 }
 
 
-.card{
+.envelope-back::before{
+  content:"";
+
   position:absolute;
 
-  left:14%;
-  right:14%;
+  left:10%;
+  top:-175px;
+
+  width:80%;
+  height:190px;
+
+  background:#e9e0d0;
+
+  clip-path:
+    polygon(
+      0 100%,
+      50% 0,
+      100% 100%
+    );
+}
+
+
+/* hidden card */
+
+.invite{
+  position:absolute;
+
+  left:12%;
+  right:12%;
 
   top:115px;
 
-  min-height:300px;
+  min-height:285px;
 
-  background:#f8f1e4;
-
-  padding:42px;
+  padding:
+    38px
+    40px;
 
   z-index:3;
 
+  background:#faf6ed;
+
   transition:
-    transform .9s
+    transform
+    .9s
     cubic-bezier(.2,.75,.2,1);
 }
 
 
-.envelope.open .card{
+.envelope.open .invite{
   transform:
-    translateY(-130px);
+    translateY(-135px);
 }
 
 
-.card h3{
-  margin:0 0 25px;
+.invite h3{
+  margin:
+    0
+    0
+    25px;
 
-  font-size:19px;
-
-  letter-spacing:-.03em;
+  font-size:17px;
+  letter-spacing:.02em;
 }
 
 
-.card p{
-  font-family:Georgia,serif;
+.invite p{
+  font-family:
+    "Cormorant Garamond",
+    serif;
 
-  font-size:15px;
-
-  line-height:1.55;
+  font-size:17px;
+  line-height:1.4;
 }
 
 
-.card-options{
-  margin-top:25px;
-
+.join-options{
   display:flex;
 
   gap:8px;
 
   flex-wrap:wrap;
+
+  margin:
+    25px
+    0;
 }
 
 
-.card-options button{
+.join-options button{
+  padding:
+    9px
+    11px;
+
   border:
     1px solid
     var(--ink);
 
   background:transparent;
 
-  padding:10px 12px;
-
   cursor:pointer;
 
   font-size:7px;
-
-  letter-spacing:.13em;
 }
 
 
-.card-options button.selected{
+.join-options button.active{
+  background:var(--ink);
   color:white;
-
-  background:var(--espresso);
 }
 
 
-.email{
-  margin-top:23px;
-
+.join-email{
   display:flex;
 
   border-bottom:
@@ -1501,8 +1476,12 @@ Then this will appear automatically.
 }
 
 
-.email input{
+.join-email input{
   flex:1;
+
+  padding:
+    12px
+    0;
 
   border:0;
 
@@ -1510,39 +1489,41 @@ Then this will appear automatically.
 
   background:transparent;
 
-  padding:12px 0;
+  font-family:
+    "Cormorant Garamond",
+    serif;
 
-  font-family:Georgia,serif;
+  font-size:17px;
 }
 
 
-.email button{
+.join-email button{
   border:0;
   background:transparent;
-
   cursor:pointer;
 }
 
 
-/* front */
+/* front envelope */
 
 .envelope-front{
   position:absolute;
 
-  left:5%;
-  right:5%;
+  left:0;
+  right:0;
+
   bottom:30px;
 
-  height:260px;
+  height:255px;
 
   z-index:5;
 
-  background:#e5dac7;
+  background:#e4dac8;
 
   clip-path:
     polygon(
       0 0,
-      50% 47%,
+      50% 48%,
       100% 0,
       100% 100%,
       0 100%
@@ -1550,199 +1531,173 @@ Then this will appear automatically.
 }
 
 
-/* only small color accent */
+/* heart only accent */
 
 .heart{
   position:absolute;
 
+  z-index:7;
+
   left:50%;
-  bottom:125px;
+  bottom:126px;
 
   transform:
     translateX(-50%);
 
-  z-index:8;
-
-  width:62px;
-  height:55px;
-
   border:0;
+  background:transparent;
 
-  background:none;
+  color:var(--red);
 
-  color:var(--rust);
-
-  font-size:47px;
-
-  line-height:1;
+  font-size:49px;
 
   cursor:pointer;
 
-  transition:.3s;
+  transition:.25s;
 }
 
 
 .heart:hover{
   transform:
     translateX(-50%)
-    scale(1.1);
+    scale(1.08);
 }
 
 
 .envelope.open .heart{
   opacity:0;
-
   pointer-events:none;
 }
 
 
-/* =========================================================
+/* ==================================================
    FOOTER
-========================================================= */
+================================================== */
 
 footer{
-  min-height:300px;
-
   padding:
     70px
     5%;
 
-  border-top:
-    1px solid
-    var(--line);
+  min-height:280px;
 
   display:flex;
 
   justify-content:space-between;
-  align-items:flex-end;
+  align-items:end;
+
+  border-top:
+    1px solid
+    var(--line);
 }
 
 
-.logo{
-  font-family:Georgia,serif;
+.footer-logo{
+  font-family:
+    "Cormorant Garamond",
+    serif;
 
   font-size:
-    clamp(70px,13vw,180px);
+    clamp(75px,13vw,175px);
 
-  line-height:.7;
-
-  letter-spacing:-.07em;
+  line-height:.65;
 }
 
 
-.footer-copy{
-  font-size:8px;
-
-  letter-spacing:.18em;
-
+.footer-right{
   text-align:right;
 
-  line-height:1.8;
+  font-size:7px;
+  line-height:1.9;
+  letter-spacing:.17em;
 }
 
 
-/* =========================================================
+/* ==================================================
    MOBILE
-========================================================= */
+================================================== */
 
-@media(max-width:760px){
+@media(max-width:780px){
 
   .nav-links{
     display:none;
   }
 
-  .hero-side{
+  .side-note{
     display:none;
   }
 
-  .typewriter{
-    transform:
-      translateX(-50%)
-      scale(.72);
-
-    transform-origin:
-      bottom center;
+  .typewriter-image{
+    width:105vw;
   }
 
-  .founder-layout,
-  .diary-heading,
-  .future-heading,
-  .invite-layout{
+  .typewriter-fallback{
+    width:90vw;
+  }
+
+  .founder-content,
+  .join-inner{
     grid-template-columns:1fr;
   }
 
-  .book{
-    margin:auto;
-  }
-
   .founder-copy{
+    text-align:center;
+  }
+
+  .founder-copy p{
     margin:auto;
   }
 
-  .photo-stack{
+  .diary-title{
+    display:block;
+  }
+
+  .diary-title p{
+    width:auto;
+    margin-top:40px;
+  }
+
+  .stack{
     height:auto;
 
     display:flex;
-
     flex-direction:column;
 
-    gap:55px;
-
     align-items:center;
+
+    gap:55px;
   }
 
   .memory{
     position:relative!important;
 
+    width:78%!important;
+    height:430px!important;
+
     left:auto!important;
     right:auto!important;
     top:auto!important;
-
-    width:78%!important;
   }
 
-  .diary-note,
-  .diary-caption{
+  .stack-writing{
     position:relative;
 
     left:auto;
-    right:auto;
     top:auto;
-    bottom:auto;
 
-    margin:35px auto;
-
-    width:80%;
+    margin-bottom:45px;
   }
 
-  .coffee-photo{
-    height:360px;
-  }
-
-  .future-letter{
-    margin-top:-20px;
-
-    padding:
-      40px
-      30px;
-  }
-
-  .article-row{
+  .notes-grid{
     grid-template-columns:1fr;
   }
 
-  .invite-copy{
-    text-align:center;
-
-    margin:auto;
+  .note-card:nth-child(2){
+    margin-top:0;
   }
 
-  .invite-copy p{
-    margin:auto;
-  }
-
-  .envelope{
-    margin-top:40px;
+  .join{
+    padding-top:90px;
   }
 
   footer{
@@ -1750,10 +1705,10 @@ footer{
 
     align-items:flex-start;
 
-    gap:50px;
+    gap:45px;
   }
 
-  .footer-copy{
+  .footer-right{
     text-align:left;
   }
 
@@ -1762,16 +1717,19 @@ footer{
 </style>
 </head>
 
+
 <body>
 
 
-<!-- NAV -->
+<!-- ==================================================
+     NAV
+================================================== -->
 
 <nav>
 
-  <div>
+  <span>
     TOWWAH
-  </div>
+  </span>
 
   <div class="nav-links">
 
@@ -1788,7 +1746,7 @@ footer{
     </a>
 
     <a href="#join">
-      CONTACT
+      JOIN
     </a>
 
   </div>
@@ -1797,108 +1755,73 @@ footer{
 
 
 
-<!-- =====================================================
-     01 TYPEWRITER
-===================================================== -->
+<!-- ==================================================
+     TYPEWRITER
+================================================== -->
 
 <section class="hero">
 
 
-  <div class="hero-side">
+  <div class="side-note">
 
     OLD<br>
     MEMORY<br>
-    OF A NEW<br>
-    TIME<br><br>
-
-    EST. 2026
+    OF A<br>
+    NEW TIME
 
   </div>
 
 
-  <div class="typewriter-scene">
+  <div class="hero-paper">
 
 
-    <div class="type-paper">
+    <div class="paper-top">
 
+      <span>
+        towwah.2026
+      </span>
 
-      <div class="paper-meta">
-
-        <span>
-          towwah.2026
-        </span>
-
-        <span>
-          somewhere in-between
-        </span>
-
-      </div>
-
-
-      <div class="paper-arabic">
-        جيت وهو توّه
-      </div>
-
-
-      <div class="paper-english">
-        TOWWAH
-      </div>
-
-
-      <div class="paper-line"></div>
-
-
-      <div class="paper-bottom">
-        old memory of a new time ....
-      </div>
-
+      <span>
+        while it's happening
+      </span>
 
     </div>
 
 
-    <div class="typewriter">
-
-      <div class="machine-bar"></div>
-
-      <div class="machine-body"></div>
-
-      <div class="machine-inner"></div>
+    <div class="hero-ar">
+      جيت وهو توّه
+    </div>
 
 
-      <div class="keys">
+    <div class="hero-en">
+      TOWWAH
+    </div>
 
-        <span class="key"></span>
-        <span class="key"></span>
-        <span class="key"></span>
-        <span class="key"></span>
-        <span class="key"></span>
-        <span class="key"></span>
-        <span class="key"></span>
-        <span class="key"></span>
-        <span class="key"></span>
-        <span class="key"></span>
 
-        <span class="key"></span>
-        <span class="key"></span>
-        <span class="key"></span>
-        <span class="key"></span>
-        <span class="key"></span>
-        <span class="key"></span>
-        <span class="key"></span>
-        <span class="key"></span>
-        <span class="key"></span>
-        <span class="key"></span>
+    <div class="hero-underline"></div>
 
-      </div>
 
+    <div class="hero-paper-note">
+      old memory of a new time ....
     </div>
 
 
   </div>
 
 
-  <div class="scroll">
-    SCROLL TO BEGIN ↓
+  <div class="typewriter-fallback"></div>
+
+
+  <img
+    src="typewriter.png"
+    class="typewriter-image"
+    alt=""
+    onerror="this.style.display='none'"
+  >
+
+
+  <div class="scroll-note">
+    SCROLL ↓
   </div>
 
 
@@ -1906,21 +1829,22 @@ footer{
 
 
 
-<!-- =====================================================
-     02 FOUNDER
-===================================================== -->
+<!-- ==================================================
+     FOUNDER
+================================================== -->
 
 <section
   class="founder"
   id="founder"
 >
 
-  <div class="section-label">
+
+  <div class="kicker">
     01 / BEFORE ANYONE ELSE — THE FOUNDER
   </div>
 
 
-  <div class="founder-layout">
+  <div class="founder-content">
 
 
     <div
@@ -1929,34 +1853,33 @@ footer{
     >
 
 
-      <div class="book-inside">
+      <div class="book-pages">
 
 
-        <div class="page">
+        <div class="book-page">
 
-          TOWWAH began with a question:
+          I kept thinking about
+          the part of people's lives
+          we usually miss.
 
           <br><br>
 
-          What if we met people
-          before their lives became
-          neat stories?
+          Before the answer.
+
+          Before the neat version.
 
         </div>
 
 
-        <div class="page">
+        <div class="book-page">
 
-          Not after they succeeded.
-
-          <br><br>
-
-          Not after they understood
-          what everything meant.
+          TOWWAH is a way
+          of arriving earlier.
 
           <br><br>
 
-          While it is still happening.
+          While something is
+          still becoming.
 
         </div>
 
@@ -1966,18 +1889,22 @@ footer{
 
       <div class="book-cover">
 
+
         <small>
           A NOTE FROM THE FOUNDER
         </small>
 
+
         <div class="book-title">
-          WHY<br>
-          TOWWAH?
+          why<br>
+          towwah?
         </div>
 
-        <div class="book-open">
-          click to open
+
+        <div class="open-book">
+          open me
         </div>
+
 
       </div>
 
@@ -1987,138 +1914,124 @@ footer{
 
     <div class="founder-copy">
 
+
       <small>
-        THE BEGINNING
+        FROM THE FOUNDER
       </small>
 
+
       <h2>
-        A place for
-        the in-between.
+        I wanted
+        to arrive
+        before the ending.
       </h2>
+
 
       <p>
         TOWWAH documents people
-        before the ending becomes obvious.
-        While plans are changing,
-        questions are still open,
-        and the next version of someone
-        has not arrived yet.
+        while the story is still open —
+        while they're changing direction,
+        figuring something out,
+        or simply living through
+        a version of themselves
+        that won't exist forever.
       </p>
 
-      <div class="handwriting">
-        I just wanted to arrive earlier.
+
+      <div class="founder-hand">
+        not after. now.
       </div>
+
 
     </div>
 
 
   </div>
 
+
 </section>
 
 
 
-<!-- =====================================================
-     03 VISUAL DIARY
-===================================================== -->
+<!-- ==================================================
+     VISUAL DIARY
+================================================== -->
 
 <section
-  class="visual-diary"
+  class="diary"
   id="diary"
 >
 
 
-  <div class="diary-heading">
+  <div class="diary-title">
 
 
     <h2>
-      THE<br>
-      VISUAL<br>
-      DIARY
+      the visual<br>
+      diary
     </h2>
 
 
     <p>
-      Not only the person.
-      Their room, their things,
-      the coffee on the table,
-      the book they brought,
-      and whatever happened
-      to be there with us.
+      People, their spaces,
+      the things they carry,
+      and everything that
+      happened to be there.
     </p>
 
 
   </div>
 
 
-  <div class="photo-stack">
+  <div class="stack">
 
 
-    <div class="diary-note">
-      the things around them matter too →
+    <div class="stack-writing">
+      one person,
+      more than one picture
     </div>
 
 
-    <div class="memory one">
+    <div class="memory m1">
 
-      <div class="clip"></div>
+      <div class="binder"></div>
 
-      <div class="photo">
-        PERSON / 001
+      <div class="fake-photo">
+        PHOTO 01
       </div>
 
     </div>
 
 
-    <div class="memory two">
+    <div class="memory m2">
 
-      <div class="clip"></div>
+      <div class="binder"></div>
 
-      <div class="photo">
-        THEIR SPACE
+      <div class="fake-photo">
+        PHOTO 02
       </div>
 
     </div>
 
 
-    <div class="memory three">
+    <div class="memory m3">
 
-      <div class="clip"></div>
+      <div class="binder"></div>
 
-      <div class="photo">
-        SOMETHING THEY CARRY
+      <div class="fake-photo">
+        THEIR THING
       </div>
 
     </div>
 
 
-    <div class="memory four">
+    <div class="memory m4">
 
-      <div class="clip"></div>
+      <div class="binder"></div>
 
-      <div class="photo">
-        THE TABLE AFTER
+      <div class="fake-photo">
+        THE MOMENT AFTER
       </div>
-
-    </div>
-
-
-    <div class="memory five">
-
-      <div class="clip"></div>
-
-      <div class="photo">
-        ONE MORE THING
-      </div>
-
-    </div>
-
-
-    <div class="diary-caption">
-
-      one conversation,
-      photographed from more
-      than one direction.
 
     </div>
 
@@ -2130,66 +2043,56 @@ footer{
 
 
 
-<!-- =====================================================
-     04 FUTURE LETTER
-===================================================== -->
+<!-- ==================================================
+     FUTURE LETTER
+================================================== -->
 
 <section class="future">
 
 
-  <div class="future-heading">
+  <div class="future-title">
+
+
+    <small>
+      YOU DON'T HAVE TO BE INTERVIEWED
+    </small>
 
 
     <h2>
-      while you're<br>
+      while you're
       still “taww”…
     </h2>
 
 
-    <div>
-
-      <p>
-        You don't have to be part
-        of an interview to leave
-        a piece of yourself here.
-      </p>
-
-      <p>
-        Write it now.
-        Choose when you want it back.
-      </p>
-
-    </div>
+    <p>
+      leave something here.
+      we'll give it back when you choose.
+    </p>
 
 
   </div>
 
 
 
-  <div class="coffee-photo">
+  <div class="coffee-scene">
 
-
-    <!--
-      Upload your real image as:
-      coffee-hands.jpg
-    -->
 
     <img
-      src="coffee-hands.jpg"
+      src="coffee.jpg"
       alt=""
       onerror="this.style.display='none'"
     >
 
 
-    <div class="coffee-placeholder">
+    <div class="photo-missing">
 
-      ADD YOUR REAL COFFEE / HANDS PHOTO HERE<br>
-      coffee-hands.jpg
+      REAL COFFEE PHOTO GOES HERE<br>
+      upload as coffee.jpg
 
     </div>
 
 
-    <div class="coffee-question">
+    <div class="coffee-ar">
       وأنت توّك… وش ودك تقول لنفسك اللي بعدين؟
     </div>
 
@@ -2198,7 +2101,7 @@ footer{
 
 
 
-  <div class="future-letter">
+  <div class="future-paper">
 
 
     <small>
@@ -2207,34 +2110,43 @@ footer{
 
 
     <textarea
-      id="letter"
-      placeholder="Write your message..."
+      id="message"
+      placeholder="write something your future self should remember..."
     ></textarea>
 
 
-    <div class="delivery">
+    <div class="future-bottom">
 
 
-      <select id="year">
+      <div class="year-area">
 
-        <option value="">
-          Send it to me in...
-        </option>
+        <label>
+          SEND IT BACK TO ME IN
+        </label>
 
-        <option>2027</option>
-        <option>2028</option>
-        <option>2029</option>
-        <option>2030</option>
-        <option>2031</option>
-        <option>2032</option>
-        <option>2033</option>
-        <option>2034</option>
-        <option>2035</option>
+        <select id="year">
 
-      </select>
+          <option value="">
+            select a year
+          </option>
+
+          <option>2027</option>
+          <option>2028</option>
+          <option>2029</option>
+          <option>2030</option>
+          <option>2031</option>
+          <option>2032</option>
+          <option>2033</option>
+          <option>2034</option>
+          <option>2035</option>
+
+        </select>
+
+      </div>
 
 
       <button
+        class="seal-letter"
         id="seal"
         type="button"
       >
@@ -2246,11 +2158,9 @@ footer{
 
 
     <div
-      class="year-note"
-      id="yearNote"
-    >
-      choose when you want to meet this version of yourself again.
-    </div>
+      class="future-response"
+      id="futureResponse"
+    ></div>
 
 
   </div>
@@ -2260,9 +2170,9 @@ footer{
 
 
 
-<!-- =====================================================
-     05 NOTES
-===================================================== -->
+<!-- ==================================================
+     NOTES
+================================================== -->
 
 <section
   class="notes"
@@ -2270,28 +2180,31 @@ footer{
 >
 
 
-  <div class="notes-layout">
+  <div class="notes-inner">
 
 
-    <div class="notes-head">
+    <div class="notes-top">
+
 
       <h2>
-        NOTES
+        notes
       </h2>
 
-      <div class="section-label">
+
+      <small>
         THINGS WORTH STAYING FOR
-      </div>
+      </small>
+
 
     </div>
 
 
-    <div class="article-row">
+    <div class="notes-grid">
 
 
-      <article class="article">
+      <article class="note-card">
 
-        <div class="article-photo"></div>
+        <div class="note-image"></div>
 
         <h3>
           Is caring still cool?
@@ -2304,9 +2217,9 @@ footer{
       </article>
 
 
-      <article class="article">
+      <article class="note-card">
 
-        <div class="article-photo"></div>
+        <div class="note-image"></div>
 
         <h3>
           Things people say
@@ -2320,9 +2233,9 @@ footer{
       </article>
 
 
-      <article class="article">
+      <article class="note-card">
 
-        <div class="article-photo"></div>
+        <div class="note-image"></div>
 
         <h3>
           The objects
@@ -2346,24 +2259,24 @@ footer{
 
 
 
-<!-- =====================================================
-     06 INVITATION
-===================================================== -->
+<!-- ==================================================
+     INVITATION
+================================================== -->
 
 <section
-  class="invitation"
+  class="join"
   id="join"
 >
 
 
-  <div class="invite-layout">
+  <div class="join-inner">
 
 
-    <div class="invite-copy">
+    <div class="join-text">
 
-      <div class="section-label">
-        05 / AN INVITATION
-      </div>
+      <small>
+        AN INVITATION
+      </small>
 
       <h2>
         maybe<br>
@@ -2372,8 +2285,8 @@ footer{
 
       <p>
         Be part of TOWWAH,
-        or simply stay close
-        to what we're making.
+        or just stay close
+        to what comes next.
       </p>
 
     </div>
@@ -2389,7 +2302,7 @@ footer{
       <div class="envelope-back"></div>
 
 
-      <div class="card">
+      <div class="invite">
 
 
         <h3>
@@ -2398,28 +2311,28 @@ footer{
 
 
         <p>
-          Maybe you want us to meet you
+          Maybe we meet you
           while you're still in it.
 
-          Or maybe you just want
-          to hear from us sometimes.
+          Or maybe you simply
+          want to hear from us.
         </p>
 
 
-        <div class="card-options">
+        <div class="join-options">
 
 
           <button
+            class="join-choice"
             type="button"
-            class="choice"
           >
             I WANT TO BE PART OF TOWWAH
           </button>
 
 
           <button
+            class="join-choice"
             type="button"
-            class="choice"
           >
             JUST KEEP ME CLOSE
           </button>
@@ -2428,16 +2341,19 @@ footer{
         </div>
 
 
-        <div class="email">
+        <div class="join-email">
+
 
           <input
             type="email"
             placeholder="your@email.com"
           >
 
+
           <button type="button">
             →
           </button>
+
 
         </div>
 
@@ -2452,6 +2368,7 @@ footer{
         class="heart"
         id="heart"
         type="button"
+        aria-label="Open invitation"
       >
         ♥
       </button>
@@ -2469,20 +2386,22 @@ footer{
 
 <footer>
 
-  <div class="logo">
+
+  <div class="footer-logo">
     TOWWAH
   </div>
 
 
-  <div class="footer-copy">
+  <div class="footer-right">
 
     تَوّه<br>
 
     OLD MEMORY OF A NEW TIME<br>
 
-    EST. 2026
+    2026
 
   </div>
+
 
 </footer>
 
@@ -2499,25 +2418,30 @@ book.addEventListener(
   "click",
   () => {
 
-    book.classList.toggle("open");
+    book
+    .classList
+    .toggle("open");
 
   }
 );
 
 
-/* FUTURE LETTER */
+
+/* LETTER */
 
 const seal =
 document.getElementById("seal");
 
+const message =
+document.getElementById("message");
+
 const year =
 document.getElementById("year");
 
-const letter =
-document.getElementById("letter");
-
-const yearNote =
-document.getElementById("yearNote");
+const response =
+document.getElementById(
+  "futureResponse"
+);
 
 
 seal.addEventListener(
@@ -2525,23 +2449,28 @@ seal.addEventListener(
   () => {
 
     if(
-      !year.value ||
-      !letter.value.trim()
+      message.value.trim() === ""
+      ||
+      year.value === ""
     ){
 
-      yearNote.textContent =
-      "write your message and choose a year first.";
+      response.textContent =
+      "write something and choose a year first.";
 
       return;
+
     }
 
-    yearNote.textContent =
-    "sealed for " +
-    year.value +
-    " — we'll meet this version of you again.";
+    response.textContent =
+    "sealed. we'll meet this version of you again in "
+    +
+    year.value
+    +
+    ".";
 
   }
 );
+
 
 
 /* ENVELOPE */
@@ -2550,42 +2479,52 @@ const heart =
 document.getElementById("heart");
 
 const envelope =
-document.getElementById("envelope");
+document.getElementById(
+  "envelope"
+);
 
 
 heart.addEventListener(
   "click",
   () => {
 
-    envelope.classList.add("open");
+    envelope
+    .classList
+    .add("open");
 
   }
 );
 
 
-/* invitation selection */
+
+/* INVITE CHOICE */
 
 document
-.querySelectorAll(".choice")
+.querySelectorAll(
+  ".join-choice"
+)
 .forEach(
-  button => {
+  choice => {
 
-    button.addEventListener(
+    choice.addEventListener(
       "click",
       () => {
 
         document
-        .querySelectorAll(".choice")
+        .querySelectorAll(
+          ".join-choice"
+        )
         .forEach(
-          item =>
-          item.classList.remove(
-            "selected"
-          )
+          button => {
+            button
+            .classList
+            .remove("active");
+          }
         );
 
-        button
+        choice
         .classList
-        .add("selected");
+        .add("active");
 
       }
     );
@@ -2594,6 +2533,7 @@ document
 );
 
 </script>
+
 
 </body>
 </html>
